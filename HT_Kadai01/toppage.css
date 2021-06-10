@@ -1,0 +1,77 @@
+@charset "utf-8";
+
+/*
+Page背景
+*/
+body{
+    background: radial-gradient(#ffffff,#88d317);
+    height: 800px;
+    width: auto;
+    font-family: 'Amatic SC', cursive;
+}
+
+
+/* 
+Title部分
+*/
+.title_main_frame{
+    font-size: 16px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+#title_top{
+    padding: 30px;
+    text-align: center;
+    font-size: 48px;
+    font-weight: bold;
+    font-style: initial;
+    color: #1a0315;
+}
+
+#top_image{
+    transform: scale(-1, 1);
+}
+
+#top_image{
+    height: 200px;
+    width: auto;
+
+    /* margin-left: auto;
+    margin-right: auto; */
+}
+
+.player_info{
+    font-size: 16px;
+    text-align: center;
+    line-height: 1.5rem;
+}
+
+#player_comment{
+    width: 500px;
+}
+
+#game_start{
+    text-align: center;
+    padding: 10px auto;
+    margin: 20px;
+    height: 40px;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#logined_player{
+    height: 300px;
+
+}
+
+#runner{
+    height: 50px;
+    background-image: url(/tenor.gif);
+    background-size: auto 50px;
+    background-repeat: repeat-x;
+    transform: scale(-1, 1);
+}

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/toppage.css">    	
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:700 rel="stylesheet>
+    <script src="/jquery-2.1.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+    <title>TOP_PAGE</title>
+</head>
+<body>
+    
+    <div class="title_main_frame">
+        <div id="title_top">
+            Comment Dash!!
+        </div>
+    </div>    
+    
+    <div id="logined_player">
+
+    </div>
+    <div id="runner">
+
+    </div>
+    <div class="title_main_frame">
+        <fieldset class="player_info">
+            <legend>プレイヤー登録</legend>
+            <label>プレイヤーid:
+                <div id="player_id">
+                    
+                </div>
+            </label>
+            <label>プレイヤー名:
+                <input type="text" id="player_name">
+            </label>
+            <br>
+            <label>コメント:
+                <input type="text" id="player_comment">
+            </label>
+            <label>
+                <input type="checkbox" id="practice_mode" value="red" checked>
+                音声認識モード
+            </label>
+        </fieldset>
+        <button id="game_start">
+            Dash!!
+        </button>    
+    </div>
+
+
+    
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyBXS3Y5YAysH_wYRziWZtpceUeTkX5MLEg",
+        authDomain: "netlifytest-37702.firebaseapp.com",
+        projectId: "netlifytest-37702",
+        storageBucket: "netlifytest-37702.appspot.com",
+        messagingSenderId: "827998833943",
+        appId: "1:827998833943:web:f12b61dd385fcb7c013b52"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const ref = firebase.database().ref();
+    //   ref.push("bbb");
+
+    console.log(0);
+
+    // Player ID生成
+    const LENGTH = 8;
+    const SOURCE = "abcdefghijklmnopqrstuvwxyz0123456789";
+    let result = '';
+    for(let i=0; i<LENGTH; i++){
+    result += SOURCE[Math.floor(Math.random() * SOURCE.length)];
+    console.log(result);
+    }
+
+    const id_maker = result;
+    $("#player_id").append(id_maker);
+
+
+    // 送信イベント
+    $("#game_start").on("click", function(){
+        const player_id = id_maker;
+        const player_name = $("#player_name").val();
+        const player_comment = $("#player_comment").val();
+        const practice_mode = document.getElementById("practice_mode");
+        let game_mode = 0;
+        if (practice_mode.checked){
+            game_mode = 0;
+        }else{
+            game_mode = 1;
+        }
+        const player_pass = {
+        player_id:player_id,
+        player_name:player_name,
+        player_comment:player_comment,
+        game_mode:game_mode
+        }
+
+        ref.push(player_pass);
+        
+    })
+
+    // 受信イベント
+    ref.on("child_added",function(data){
+        const v = data.val();
+        const k = data.key;
+        const s ='<p>'+v.player_name+':'+v.player_comment+'</p>';
+        // $("#logined_player").append(s);
+        let a = 1;
+        a = a + 1;
+        console.log(a);
+        createText(v.player_name,v.player_comment)
+
+    });
+
+    let firebase_node = firebase.database().ref();
+    firebase_node.once('value', parent => alert('現在ログイン中のプレイヤーは' + parent.numChildren()+'人です'));
+
+
+// スライド動画(テンプレから引用)
+
+const game_start = document.getElementById("game_start");
+game_start.addEventListener("click", function(){createText()}, false);
+let count = 0;
+
+async function createText(player_name,player_comment) {
+  let div_text = document.createElement('div');
+  div_text.id="text"+count; //アニメーション処理で対象の指定に必要なidを設定
+  count++;
+
+  div_text.style.position = 'fixed'; //テキストのは位置を絶対位置にするための設定
+  div_text.style.whiteSpace = 'nowrap' //画面右端での折り返しがなく、画面外へはみ出すようにする
+  div_text.style.left = (document.documentElement.clientWidth) + 'px'; //初期状態の横方向の位置は画面の右端に設定
+  var random = Math.round( Math.random()*300);
+  div_text.style.top = random + 100 + 'px';  //初期状態の縦方向の位置は画面の上端から下端の間に設定（ランダムな配置に
+
+    if(player_name!=null){
+        div_text.appendChild(document.createTextNode(player_name+'/'+player_comment)); //画面上に表示されるテキストを設定
+        document.body.appendChild(div_text); //body直下へ挿入
+        //ライブラリを用いたテキスト移動のアニメーション： durationはアニメーションの時間、
+        //横方向の移動距離は「画面の横幅＋画面を流れるテキストの要素の横幅」、移動中に次の削除処理がされないようawait
+        await gsap.to("#"+div_text.id, {duration: 15, x: -1*(document.documentElement.clientWidth+div_text.clientWidth)});
+        div_text.parentNode.removeChild(div_text); //画面上の移動終了後に削除
+        console.log(player_name);
+        console.log(player_comment);
+    }
+}
+</script>
+
+</body>
+
+</html>
