@@ -3,126 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 自動リロード -->
+    <!-- <meta http-equiv="refresh" content="5; URL=/HT_kadai01/index.html"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/reset.css">
-    <link rel="stylesheet" href="/toppage.css">    	
-    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:700 rel="stylesheet>
-    <script src="/jquery-2.1.3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
-    <title>TOP_PAGE</title>
+    <link rel="stylesheet" href="/HT_kadai01/reset.css">
+    <link rel="stylesheet" href="/HT_kadai01/toppage.css">
+    <script src="/HT_kadai01/jquery-2.1.3.min.js"></script>
+    <title>INDEX</title>
 </head>
+
+<div class="top_image">
+    <img class="top_image_pic" src="/HT_kadai01/top_image.png" alt="top_image">
+</div>
+
+<header class="site_header">
+    <h1 class="site_logo"> Sample
+    </h1>
+    <nav class="gnav">
+        <ul class="gnav__menu">
+            <li class="gnav__menu__item"><a href="">About</a></li>
+            <li class="gnav__menu__item"><a href="">Works</a></li>
+            <li class="gnav__menu__item"><a href="">Recruit</a></li>
+            <li class="gnav__menu__item"><a href="">News</a></li>
+            <li class="gnav__menu__item"><a href="">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+<div class="header_change">
+    <h1 class="site_logo"> Sample </h1>
+    <nav class="gnav">
+        <ul class="gnav__menu">
+            <li class="gnav__menu__item"><a href="">About</a></li>
+            <li class="gnav__menu__item"><a href="">Works</a></li>
+            <li class="gnav__menu__item"><a href="">Recruit</a></li>
+            <li class="gnav__menu__item"><a href="">News</a></li>
+            <li class="gnav__menu__item"><a href="">Contact</a></li>
+        </ul>
+    </nav>        
+</div>
+
+
 <body>
-    <div class="title_main_frame">
-        <div id="title_top">
-            Comment Dash!!
-        </div>
-        
-        <!--ロゴ用スペース-->
-        <div class="title_sub_frame">
-            <img src="/Top_image.png" id="top_image" alt="top_image">
-
-        </div>
-        <!--/ロゴ用スペース-->
-
-        <fieldset class="player_info">
-            <legend>プレイヤー登録</legend>
-            <label>プレイヤーid:
-                <div id="player_id">
-
-                </div>
-            </label>
-            <label>プレイヤー名:
-                <input type="text" id="player_name">
-            </label>
-            <br>
-            <label>コメント:
-                <input type="text" id="player_comment">
-            </label>
-            <br>
-            <label>
-                <input type="checkbox" id="practice_mode" value="red" checked>
-                音声認識モード
-            </label>
-        </fieldset>
-        
-        <button id="game_start">
-            Game Start!!
-        </button>
-
-        <!-- <div id="logined_player" style="overflow: auto;height: 200px;"> -->
-
-        </div>
-
-    </div>
-
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+<footer class="site_footer">
+    <p class="copyright">Sample</p>
+</footer>
 
 <script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyBXS3Y5YAysH_wYRziWZtpceUeTkX5MLEg",
-    authDomain: "netlifytest-37702.firebaseapp.com",
-    projectId: "netlifytest-37702",
-    storageBucket: "netlifytest-37702.appspot.com",
-    messagingSenderId: "827998833943",
-    appId: "1:827998833943:web:f12b61dd385fcb7c013b52"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const ref = firebase.database().ref();
-//   ref.push("bbb");
 
-console.log(0);
-
-// Player ID生成
-const LENGTH = 8;
-const SOURCE = "abcdefghijklmnopqrstuvwxyz0123456789";
-let result = '';
-for(let i=0; i<LENGTH; i++){
-result += SOURCE[Math.floor(Math.random() * SOURCE.length)];
-console.log(result);
-}
-
-const id_maker = result;
-$("#player_id").append(id_maker);
-
-// 送信イベント
-$("#game_start").on("click", function(){
-    const player_id = id_maker;
-    const player_name = $("#player_name").val();
-    const player_comment = $("#player_comment").val();
-    const practice_mode = document.getElementById("practice_mode");
-    let game_mode = 0;
-    if (practice_mode.checked){
-        game_mode = 0;
-    }else{
-        game_mode = 1;
+// メニューバースクロール
+    var _window = $(window),
+    _header = $('.site_header'),
+    headerChange = $('.header_change'),
+    heroBottom;
+ 
+    _window.on('scroll',function(){     
+    heroBottom = $('.hero').height();
+    if(_window.scrollTop() > heroBottom){
+        headerChange.addClass('show');  
     }
-    const player_pass = {
-    player_id:player_id,
-    player_name:player_name,
-    player_comment:player_comment,
-    game_mode:game_mode
+    else{
+        headerChange.removeClass('show');
     }
-    ref.push(player_pass);
-    window.location.href="/comment.html";
-    
-})
+    });
+ 
+_window.trigger('scroll');
+// メニューバースクロール
 
-// 受信イベント
-ref.on("child_added",function(data){
-    const v = data.val();
-    const k = data.key;
-    const s ='<p>'+v.player_id+':'+v.player_name+'</p>';
-    $("#logined_player").append(s);
-});
+
+
 
 </script>
 
 </body>
-
 </html>
