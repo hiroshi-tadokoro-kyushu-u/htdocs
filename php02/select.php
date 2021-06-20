@@ -1,14 +1,17 @@
 <?php
+
+require_once('funcs.php');
+
 //1.  DB接続します
 try {
   //Password:MAMP='root',XAMPP=''
-  $pdo = new PDO('mysql:dbname=データベース名;charset=utf8;host=localhost','ユーザー名','パスワード');
+  $pdo = new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','root');
 } catch (PDOException $e) {
   exit('DBConnectError:'.$e->getMessage());
 }
 
 //２．SQL文を用意(データ取得：SELECT)
-$stmt = $pdo->prepare("************* *****");
+$stmt = $pdo->prepare("SELECT * FROM gs_an_table");
 
 //3. 実行
 $status = $stmt->execute();
@@ -24,7 +27,10 @@ if($status==false) {
   //Selectデータの数だけ自動でループしてくれる
   //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
   while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){ 
-    $view .= "**********";
+    var_dump($result);
+    $view .= "<p>";
+    $view .= h($result['indate']).':'.h($result['name']).':'.h($result['naiyo']);
+    $view .= "</p>";
   }
 
 }
@@ -57,7 +63,7 @@ if($status==false) {
 
 <!-- Main[Start] -->
 <div>
-    <div class="container jumbotron"><?=**********?></div>
+    <div class="container jumbotron"><?=$view?></div>
 </div>
 <!-- Main[End] -->
 

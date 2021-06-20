@@ -19,7 +19,7 @@
 <!-- Head[End] -->
 
 <!-- Main[Start] -->
-<form method="どんな方法で" action="どこに送るのか？">
+<form method="POST" action="insert.php">
   <div class="jumbotron">
    <fieldset>
     <legend>フリーアンケート</legend>
