@@ -13,19 +13,28 @@ function db_connect(){
       }
     }
 
-//SQLエラー関数：sql_error($stmt)
-function sql_error($stmt)
-{
+//SQLエラー
+function sql_error($stmt){
+    //execute（SQL実行時にエラーがある場合）
     $error = $stmt->errorInfo();
-    exit("SQLError:" . print_r($error, true));
+    exit("SQLError:".$error[2]);
 }
+?>
 
-//リダイレクト関数: redirect($file_name)
-function redirect($file_name)
-{
-    header("Location: " . $file_name );
+<?php
+function redirect($file_name){
+    header("Location: ".$file_name);
     exit();
 }
 
+//ログインチェック
+function loginCheck(){
+  if( $_SESSION["chk_ssid"] != session_id() ){
+    exit('LOGIN ERROR');
+  }else{
+    session_regenerate_id(true);
+    $_SESSION['chk_ssid'] = session_id();
+  }
+}
 
 ?>

@@ -25,7 +25,7 @@
     <img class="top_image_pic" src="./top_image.png" alt="top_image">
 </div>
 
-<header class="site_header">
+<div class="site_header">
     <h1 class="site_logo"> Sample
     </h1>
     <nav class="gnav">
@@ -37,7 +37,7 @@
             <li class="gnav__menu__item"><a href="">Contact</a></li>
         </ul>
     </nav>
-</header>
+</div>
 
 
 <div class="header_change">
@@ -146,7 +146,7 @@
 
     <div id="workspace_03" class="workspace">
         <div class="video_frame" style="width: 1000px; object-fit: cover;">
-            <iframe style="object-fit: cover;" width="1000" height="500" src="\HT_kadai01\HT_PHP_kadai01\INDEX - Google Chrome 2021-06-20 23-57-07_Trim.mp4" frameborder="0"></iframe>
+            <iframe style="object-fit: cover;" width="1000" height="500" src="./INDEX - Google Chrome 2021-06-20 23-57-07_Trim.mp4" frameborder="0"></iframe>
         </div>
     </div>
 
