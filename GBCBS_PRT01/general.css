@@ -176,3 +176,60 @@
     font-size: 18px;
     text-decoration:none;
 }
+
+.login_form_frame{
+    height:350px;
+    width:800px;
+    margin:10px auto 10pc auto;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+    display: flex;
+    flex-direction:column;
+    justify-content:space-evenly;
+    color:black;
+    border: 5px solid;
+    border-color: #ffffff;
+    border-radius: 8px;
+    background:#99D3DF;
+}
+
+.login_form_frame form{
+    display: flex;
+    justify-content:space-evenly;
+    align-items:center;
+    flex-direction: column;
+}
+
+.login_form_button{
+    margin: 20px;
+    width: 400px;
+    height: 36px;
+    border: 2px solid;
+    border-color: #ffffff;
+    border-radius: 8px;
+    background:#ffdd33;
+    font-size: 18px;
+
+}
+
+.login_form_input{
+    border-collapse: collapse;
+}
+
+.login_form_input th,td{
+    padding:10px;
+    width: 600px;
+    border:solid 2px black;
+    background:#E9E9E9;
+}
+
+.login_form_input input{
+    padding:10px;
+    width: 500px;
+    border:solid 2px black;
+    background: white;
+}
+
+

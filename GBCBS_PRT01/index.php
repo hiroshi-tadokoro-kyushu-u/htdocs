@@ -16,6 +16,10 @@
     <title>INDEX</title>
 </head>
 
+<!--
+以下、共通ヘッダー
+-->
+
 <div class="site_header01">
     <a href="./index.php">
         <img class="site_logo" src="./logo.png">
@@ -23,7 +27,7 @@
     </a>
     <nav class="gnav">
         <ul class="gnav_menu">
-            <li class="gnav_menu_item01"><a href="">LOG-IN</a></li>
+            <li class="gnav_menu_item01"><a href="./Account_Control/login.php">LOG-IN</a></li>
             <li class="gnav_menu_item01"><a href="">User登録</a></li>
             <li class="gnav_menu_item01"><a href="">XXX</a></li>
         </ul>
@@ -41,6 +45,11 @@
         </ul>
     </nav>
 </div>
+
+<!-- 
+以下、メイン部分
+ -->
+
 
 <body class="index_background"> 
     <div class="function_list">
