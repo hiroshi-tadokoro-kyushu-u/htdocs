@@ -23,11 +23,11 @@ require_once('../tools.php');
 $pdo = db_connect();
 
 // ３．SQL文を用意(データ登録：INSERT)
-$stmt = $pdo->prepare("SELECT * FROM Users WHERE user_name = :user_name AND user_password = :user_password");
+$stmt = $pdo->prepare("SELECT * FROM Users WHERE user_name = :user_name");
 
 // 4. バインド変数を用意
 $stmt->bindValue(':user_name', $user_name, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
-$stmt->bindValue(':user_password', $user_password, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
+// $stmt->bindValue(':user_password', $user_password, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
 
 // 5. 実行
 $status = $stmt->execute();
@@ -42,8 +42,8 @@ $val = $stmt->fetch(); //1レコードだけ取得する方法
 
 //5. 該当レコードがあればSESSIONに値を代入
 //* if(password_verify($lpw, $val["lpw"])){
-if( $val['user_id'] != "" ){
-    
+if( password_verify($user_password, $val['user_password']){
+
 //Login成功時
 $_SESSION['chk_ssid']  = session_id();
 $_SESSION['user_access'] = $val['user_access'];
