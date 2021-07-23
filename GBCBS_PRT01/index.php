@@ -28,6 +28,7 @@
     <nav class="gnav">
         <ul class="gnav_menu">
             <li class="gnav_menu_item01"><a href="./Account_Control/login.php">LOG-IN</a></li>
+            <li class="gnav_menu_item01"><a href="./Account_Control/logout.php">LOG-OUT</a></li>
             <li class="gnav_menu_item01"><a href="./Account_Control/user_register.php">User登録</a></li>
             <li class="gnav_menu_item01"><a href="">XXX</a></li>
         </ul>

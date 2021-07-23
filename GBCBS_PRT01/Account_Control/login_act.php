@@ -1,10 +1,13 @@
 <?php
+
+session_start();
+
 // 1. POSTデータ取得
 $user_name = $_POST["user_name"];
-$user_email = $user_name;
+// $user_email = $user_name;
 $user_password = $_POST["user_password"];
-$user_group = "MC";
-$user_access = 1;
+// $user_group = "MC";
+// $user_access = 1;
 
 // 2. DB接続します
 
@@ -20,27 +23,43 @@ require_once('../tools.php');
 $pdo = db_connect();
 
 // ３．SQL文を用意(データ登録：INSERT)
-$stmt = $pdo->prepare(
-  "INSERT INTO Users(user_name, user_email, user_password, user_group, user_access)
-  VALUES(:user_name, :user_email, :user_password, :user_group, :user_access)");
+$stmt = $pdo->prepare("SELECT * FROM Users WHERE user_name = :user_name AND user_password = :user_password");
 
 // 4. バインド変数を用意
 $stmt->bindValue(':user_name', $user_name, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
-$stmt->bindValue(':user_email', $user_email, PDO::PARAM_STR); //  //Integer（数値の場合 PDO::PARAM_INT)
 $stmt->bindValue(':user_password', $user_password, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
-$stmt->bindValue(':user_group', $user_group, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
-$stmt->bindValue(':user_access', $user_access, PDO::PARAM_INT);  //Integer（数値の場合 PDO::PARAM_INT)
 
 // 5. 実行
 $status = $stmt->execute();
 
-
 // 6．データ登録処理後
 if ($status == false) {
     sql_error($stmt);
-    } else {
-      redirect('../index.php');
-}?>
+    } 
+    
+$val = $stmt->fetch(); //1レコードだけ取得する方法
+//$count = $stmt->fetchColumn(); //SELECT COUNT(*)で使用可能()
+
+//5. 該当レコードがあればSESSIONに値を代入
+//* if(password_verify($lpw, $val["lpw"])){
+if( $val['user_id'] != "" ){
+    
+//Login成功時
+$_SESSION['chk_ssid']  = session_id();
+$_SESSION['user_access'] = $val['user_access'];
+$_SESSION['user_name'] = $val['user_name'];
+
+redirect('../index.php');
+
+}else{
+//Login失敗時(Logout経由)
+
+redirect('./login.php');
+}
+
+exit();
+
+?>
 
 
 ?>

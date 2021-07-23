@@ -10,9 +10,9 @@ function db_connect(){
 
       // //内部テスト用
         $db_name = "mil16_gbcbs_prt01";    //データベース名
-        $db_id   = "localhost";      //アカウント名
+        $db_id   = "root";      //アカウント名
         $db_pw   = "root";      //パスワード：XAMPPはパスワード無しに修正してください。
-        $db_host = "root"; //DBホスト
+        $db_host = "localhost"; //DBホスト
 
       $pdo = new PDO('mysql:dbname=' . $db_name . ';charset=utf8;host=' . $db_host, $db_id, $db_pw);
         return $pdo;//ここを追加！！
@@ -27,9 +27,7 @@ function sql_error($stmt){
     $error = $stmt->errorInfo();
     exit("SQLError:".$error[2]);
 }
-?>
 
-<?php
 function redirect($file_name){
     header("Location: ".$file_name);
     exit();

@@ -53,19 +53,19 @@
 
     <div class="login_form_frame">
         LOGIN TO YOUR ACCOUNT
-        <form method="POST" action="">
+        <form method="POST" action="./login_act.php">
             <table class="login_form_input">
                 <tr>
                     <td>USERNAME(mail-address)</td>
                 </tr>
                 <tr>
-                    <td><input type="text" title="username" placeholder="username"></td>
+                    <td><input type="text" name="user_name" placeholder="username"></td>
                 </tr>
                 <tr>
                     <td>PASSWORD</td>
                 </tr>
                 <tr>
-                    <td><input type="text" title="password" placeholder="password"></td>
+                    <td><input type="text" name="user_password" placeholder="password"></td>
                 </tr>
             </table>
             <input class="login_form_button" type="submit" value="Login">

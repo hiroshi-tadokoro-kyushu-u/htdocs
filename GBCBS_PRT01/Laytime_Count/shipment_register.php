@@ -1,6 +1,15 @@
 <?php
 
+//SESSIONスタート
+session_start();
 
+//関数を呼び出す
+require_once('../tools.php');
+
+//ログインチェック
+loginCheck();
+$user_name = $_SESSION['user_name'];
+//以下ログインユーザーのみ
 
 ?>
 
@@ -27,6 +36,7 @@
     </a>
     <nav class="gnav">
         <ul class="gnav_menu">
+            <li>LOGIN USER : <?= $user_name; ?></li>
             <li class="gnav_menu_item01"><a href="../Account_Control/login.php">LOG-IN</a></li>
             <li class="gnav_menu_item01"><a href="../Account_Control/user_register.php">User登録</a></li>
             <li class="gnav_menu_item01"><a href="">XXX</a></li>

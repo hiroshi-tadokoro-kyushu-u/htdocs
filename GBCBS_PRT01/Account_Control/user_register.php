@@ -53,7 +53,7 @@
 
     <div class="login_form_frame">
         REGISTER YOUR ACCOUNT
-        <form method="POST" action="./user_register_act.php">
+        <form method="POST" action="./user_register_act.php" onsubmit="return beforeSubmit()">
             <table class="login_form_input">
                 <tr>
                     <td>USERNAME(mail-address)</td>
@@ -74,5 +74,14 @@
 
 </body>
 
+<script>
+  function beforeSubmit() {
+    if(window.confirm('この内容で登録しますがよろしいでしょうか?')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+</script>
 
 </html>
