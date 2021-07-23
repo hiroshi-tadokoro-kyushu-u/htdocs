@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../reset.css">
     <link rel="stylesheet" href="../general.css">
     <script src="../jquery-2.1.3.min.js"></script>
-    <title>INDEX</title>
+    <title>LOGIN</title>
 </head>
 
 <!--
@@ -27,8 +27,8 @@
     </a>
     <nav class="gnav">
         <ul class="gnav_menu">
-            <li class="gnav_menu_item01"><a href="">LOG-IN</a></li>
-            <li class="gnav_menu_item01"><a href="">User登録</a></li>
+            <li class="gnav_menu_item01"><a href="./login.php">LOG-IN</a></li>
+            <li class="gnav_menu_item01"><a href="./user_register.php">User登録</a></li>
             <li class="gnav_menu_item01"><a href="">XXX</a></li>
         </ul>
     </nav>

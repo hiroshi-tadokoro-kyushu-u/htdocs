@@ -177,6 +177,10 @@
     text-decoration:none;
 }
 
+/* 
+LOGINフォーム関連
+*/
+
 .login_form_frame{
     height:350px;
     width:800px;
@@ -232,4 +236,101 @@
     background: white;
 }
 
+/* 
+配船登録管理関係
+*/
+.shipment_register{
+    margin:20px;
+    width: auto;
+    display: flex;
+    justify-content:center;
+}
 
+.shipment_register_button{
+    padding: 20px;
+    width: auto;
+    border: 2px solid;
+    border-color: #ffffff;
+    border-radius: 8px;
+    background:#ffdd33;
+    font-size: 18px;
+    letter-spacing: 0.2em;
+}
+
+.shipment_table01{
+    margin: 20px;
+    width: auto;
+    display: flex;
+    justify-content:space-evenly;
+    align-items:center;
+
+}
+
+.shipment_table02{
+    border: 2px solid;
+    border-color: #E9E9E9;
+    border-radius: 8px;
+    background:white;
+    border-collapse: collapse;   
+    text-align: center;
+}
+
+
+.shipment_table02 th{
+    width:250px;
+    height:30px;
+    padding:2px;
+    line-height: 30px;
+    border: 2px solid;
+    background-color: #99D3DF;
+    border-color: #E9E9E9;
+    border-radius: 8px;
+}
+
+.shipment_table02 td{
+    width:250px;
+    height:30px;
+    padding:2px;
+    line-height: 30px;
+    background:white;
+    border: 2px solid;
+    border-color: #E9E9E9;
+    border-radius: 8px;
+}
+
+.shipment_table03{
+    border: 2px solid;
+    border-color: #E9E9E9;
+    border-radius: 8px;
+    background:white;
+    border-collapse: collapse;   
+    text-align: center;
+}
+
+
+.shipment_table03 th{
+    width:500px;
+    height:50px;
+    padding:2px;
+    line-height: 50px;
+    border: 2px solid;
+    background-color: #99D3DF;
+    border-color: #E9E9E9;
+    border-radius: 8px;
+}
+
+.shipment_table03 td{
+    width:500px;
+    height:50px;
+    padding:2px;
+    line-height: 50px;
+    background:white;
+    border: 2px solid;
+    border-color: #E9E9E9;
+    border-radius: 8px;
+}
+
+.shipment_table03 input{
+    margin:2px;
+    width:95%;
+}

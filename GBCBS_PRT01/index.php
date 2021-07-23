@@ -28,7 +28,7 @@
     <nav class="gnav">
         <ul class="gnav_menu">
             <li class="gnav_menu_item01"><a href="./Account_Control/login.php">LOG-IN</a></li>
-            <li class="gnav_menu_item01"><a href="">User登録</a></li>
+            <li class="gnav_menu_item01"><a href="./Account_Control/user_register.php">User登録</a></li>
             <li class="gnav_menu_item01"><a href="">XXX</a></li>
         </ul>
     </nav>
@@ -60,14 +60,14 @@
             </div>
 
             <div class="user_register">
-                <a href="">
+                <a href="./Account_Control/user_register.php">
                     <div class="user_register_text">User登録</div>              
                 </a> 
             </div>
         </div>
             
         <div class="main_function">
-            <a class="function_picture" href="">
+            <a class="function_picture" href="./Laytime_Count/LC_main.php">
                 <div>LAYTIME CALCULATION</div>
                 <img src="./LAYTIME CALCULATION.JPG" alt="">
             </a>
