@@ -38,12 +38,12 @@
         $("#btn").on("click",function() {
             //Ajax送信開始
             $.ajax({
-                type: "****",
-                url: "*****",
+                type: "post",
+                url: "insert.php",
                 data: {
-                    name: *****,
-                    email: *****,
-                    naiyou: *****,
+                    name: $("#name").val(),
+                    email: $("#email").val(),
+                    naiyou: $("#naiyo").val(),
                 },
                 dataType: "html",
                 //通信成功時にsuccess内が実行される！

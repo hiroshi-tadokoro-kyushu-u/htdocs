@@ -257,6 +257,24 @@ LOGINフォーム関連
     letter-spacing: 0.2em;
 }
 
+.shipment_delete_form{
+    display: flex;
+    justify-content:center;
+}
+
+
+.shipment_delete_button{
+    padding: 20px;
+    width: 500px;
+    border: 2px solid;
+    border-color: #ffffff;
+    border-radius: 8px;
+    background:red;
+    color: #ffffff;
+    font-size: 18px;
+    letter-spacing: 0.2em;
+}
+
 .shipment_table01{
     margin: 20px;
     width: auto;
@@ -309,10 +327,10 @@ LOGINフォーム関連
 
 
 .shipment_table03 th{
-    width:500px;
-    height:50px;
+    width:250px;
+    height:30px;
     padding:2px;
-    line-height: 50px;
+    line-height: 30px;
     border: 2px solid;
     background-color: #99D3DF;
     border-color: #E9E9E9;
@@ -320,10 +338,10 @@ LOGINフォーム関連
 }
 
 .shipment_table03 td{
-    width:500px;
-    height:50px;
+    width:250px;
+    height:30px;
     padding:2px;
-    line-height: 50px;
+    line-height: 30px;
     background:white;
     border: 2px solid;
     border-color: #E9E9E9;
@@ -331,6 +349,49 @@ LOGINフォーム関連
 }
 
 .shipment_table03 input{
+    margin:2px;
+    width:95%;
+}
+
+/* 
+SHIPMENT_INPUT関連
+*/
+.shipment_table04_outline{
+    padding:5px;
+    background:white;
+    border-radius: 8px;
+}
+
+.shipment_table04{
+    border: 2px solid;
+    border-color: #E9E9E9;
+    background:white;
+    border-collapse: collapse;   
+    text-align: center;
+    font-size: 12px;
+}
+
+.shipment_table04 th{
+    width:150px;
+    height:20px;
+    padding:1px;
+    line-height: 20px;
+    border: 1px solid;
+    background-color: white;
+    border-color: #E9E9E9;
+}
+
+.shipment_table04 td{
+    width:150px;
+    height:20px;
+    padding:1px;
+    line-height: 20px;
+    border: 1px solid;
+    background-color: white;
+    border-color: #E9E9E9;
+}
+
+.shipment_table04 input{
     margin:2px;
     width:95%;
 }

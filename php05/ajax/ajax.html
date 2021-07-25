@@ -11,12 +11,15 @@
 
             //Ajax（非同期通信）//AJAX通信(ver1.5...)
             $.ajax({
-                type: '***', //GET,POST
-                url: '****', //通信先URL
+                type: 'POST', //GET,POST
+                url: 'ajax.php', //通信先URL
                 data: { //Dataプロパティはデータを送信（渡す）役目
-                    
+                    id: 1,
+                    name: 'test',
+                    age: 27,
+                    sleep:3,
                 },
-                dataType: '***', //text, html, xml, json, jsonp, script
+                dataType: 'json', //text, html, xml, json, jsonp, script
                 timeout: 5000,//データの返答を待つ時間(ミリ秒)
                 success: function(data) {
                     $("#ajax_status").text("通信完了！");

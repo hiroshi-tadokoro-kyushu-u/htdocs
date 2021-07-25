@@ -9,6 +9,7 @@ require_once('../tools.php');
 //ログインチェック
 loginCheck();
 $user_name = $_SESSION['user_name'];
+$user_id = $_SESSION['user_id'];
 //以下ログインユーザーのみ
 
 ?>
@@ -76,19 +77,41 @@ $user_name = $_SESSION['user_name'];
                     <th>作業進捗</th>
                     <th>入力/修正/削除</th>
                 </tr>
+
+                <?php
+                $pdo = db_connect();
+                $stmt = $pdo->prepare("SELECT * FROM shipments WHERE input_id = :user_id");
+                $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+
+                //3. 実行
+                $status = $stmt->execute();
+                //4．データ表示
+
+                if($status==false) {
+                //execute（SQL実行時にエラーがある場合）
+                $error = $stmt->errorInfo();
+                exit("ErrorQuery:".$error[2]);
+                }else{
+                //Selectデータの数だけ自動でループしてくれる
+                //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
+                while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
+                ?>
                 <tr>
-                    <td>船名</td>
-                    <td>案件名</td>
-                    <td>契約年度</td>
-                    <td>配船番号</td>
-                    <td>作業進捗</td>
-                    <td>入力/修正/削除</td>
+                    <td><?= $result['vessel_name'];?></td>
+                    <td><?= $result['project_name'];?></td>
+                    <td><?= $result['contract_year'];?></td>
+                    <td><?= $result['shipment_number'];?></td>
+                    <td><?= $result['work_status'];?></td>
+                    <td><?php echo '<a href="shipment_input.php?shipment_id='.$result['shipment_id'].'">[ (入力) / </a>'.'<a href="shipment_revise.php?shipment_id='.$result['shipment_id'].'">(修正/削除)]</a>'?></td>
                 </tr>
+
+                <?php
+                }}
+                ?>
             </table>
         </form>
     </div>
 
 </body>
-
 
 </html>

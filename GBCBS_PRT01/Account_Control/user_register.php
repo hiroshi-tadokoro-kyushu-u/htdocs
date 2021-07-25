@@ -84,4 +84,35 @@
   }
 </script>
 
+<!--USER重複チェック-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $('#user_name').blur(function(){
+        var check_str = $(this).val();
+        //Ajax送信開始
+        if(check_str){
+            $.ajax({
+                url: 'user_unique_check.php',
+                type:"POST",
+                data:{
+                    check: check_str,
+                },
+                // dataType: 'json',
+                success: function() {
+                    console.log("success");
+                },
+                error: function() {
+                    console.log("error"); //戻り値Allオブジェクト
+                },
+
+            }).done(function(flag){
+                if(flag == 1){
+                    alert('そのメールアドレスは既に登録されています');
+                    $('#user_name').val('');
+                }
+            })
+        }
+    });
+</script>
+
 </html>

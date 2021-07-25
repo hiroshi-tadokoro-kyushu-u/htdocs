@@ -2,7 +2,7 @@
 // 1. POSTデータ取得
 $user_name = $_POST["user_name"];
 $user_email = $user_name;
-$user_password = $_POST["user_password"];
+$user_password = password_hash($_POST["user_password"],PASSWORD_DEFAULT);
 $user_group = "MC";
 $user_access = 1;
 
@@ -42,8 +42,6 @@ if ($status == false) {
       redirect('../index.php');
 }?>
 
-
-?>
 
 <!DOCTYPE html>
 <html lang="ja">

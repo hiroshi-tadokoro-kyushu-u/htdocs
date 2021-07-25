@@ -42,12 +42,13 @@ $val = $stmt->fetch(); //1レコードだけ取得する方法
 
 //5. 該当レコードがあればSESSIONに値を代入
 //* if(password_verify($lpw, $val["lpw"])){
-if( password_verify($user_password, $val['user_password']){
+if( password_verify($user_password, $val['user_password'])){
 
 //Login成功時
 $_SESSION['chk_ssid']  = session_id();
 $_SESSION['user_access'] = $val['user_access'];
 $_SESSION['user_name'] = $val['user_name'];
+$_SESSION['user_id'] = $val['user_id'];
 
 redirect('../index.php');
 

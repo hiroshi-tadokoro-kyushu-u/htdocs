@@ -1,7 +1,8 @@
 <?php
 //1. POSTデータ取得
-
-
+$name =$_POST["name"];
+$email =$_POST["email"];
+$naiyou = $_POST["naiyou"];
 
 //2. DB接続します(エラー処理追加)
 require_once("../funcs.php");
