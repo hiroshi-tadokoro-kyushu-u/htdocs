@@ -19,46 +19,21 @@ $shipment_id = $_SESSION['shipment_id'];
 // $shipment_password = chr(mt_rand(65,90)).chr(mt_rand(65,90)).chr(mt_rand(65,90)).chr(mt_rand(65,90)).chr(mt_rand(65,90)).chr(mt_rand(65,90)).chr(mt_rand(65,90)).chr(mt_rand(65,90));
 $loading_volume = $_POST["loading_volume"];
 $arrival_time = $_POST["arrival_time"];
-$contract_year = $_POST["contract_year"];
-$shipment_number = $_POST["shipment_number"];
-$operation_location = $_POST["operation_location"];
-$operation_rate = $_POST["operation_rate"];
-$dem_rate = $_POST["dem_rate"];
-$des_rate = $_POST["des_rate"];
+$nor_tender = $_POST["nor_tender"];
+$berthed_time = $_POST["berthed_time"];
+$commencement_of_operation = $_POST["commencement_of_operation"];
+$completion_of_operation = $_POST["completion_of_operation"];
+$commencement_of_laytime = $_POST["commencement_of_laytime"];
 // $work_status;
 // $input_id = $_SESSION['user_id'];
 // $input_group = "MC";
 // $input_datetime;
 // $confirm_id;
-
-// 2. DB接続します
-
-// try {
-//   //Password:MAMP='root',XAMPP=''
-//   $pdo = new PDO('mysql:dbname=package_matching;charset=utf8;host=localhost','root','root');
-// } catch (PDOException $e) {
-//   exit('DBConnectError:'.$e->getMessage());
-// }
-
 $pdo = db_connect();
+$stmt = $pdo->prepare("UPDATE shipments SET loading_volume=:loading_volume WHERE shipment_id=:shipment_id;");
+$stmt->bindValue(':shipment_id', $shipment_id, PDO::PARAM_INT); //  //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':loading_volume', $loading_volume, PDO::PARAM_INT);  //Integer（数値の場合 PDO::PARAM_INT)
 
-// ３．SQL文を用意(データ登録：INSERT)
-$stmt = $pdo->prepare(
-  "UPDATE shipments SET vessel_name=:vessel_name, project_name=:project_name, contract_year=:contract_year, shipment_number=:shipment_number, operation_location=:operation_location, operation_rate=:operation_rate, dem_rate=:dem_rate, des_rate=:des_rate
-  WHERE shipment_id=:shipment_id;");
-
-// 4. バインド変数を用意
-// $stmt->bindValue(':shipment_password', $shipment_password, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
-$stmt->bindValue(':vessel_name', $vessel_name, PDO::PARAM_STR); //  //Integer（数値の場合 PDO::PARAM_INT)
-$stmt->bindValue(':project_name', $project_name, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
-$stmt->bindValue(':contract_year', $contract_year, PDO::PARAM_INT);  //Integer（数値の場合 PDO::PARAM_INT)
-$stmt->bindValue(':shipment_number', $shipment_number, PDO::PARAM_INT);  //Integer（数値の場合 PDO::PARAM_INT)
-$stmt->bindValue(':operation_location', $operation_location, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
-$stmt->bindValue(':operation_rate', $operation_rate, PDO::PARAM_INT); //  //Integer（数値の場合 PDO::PARAM_INT)
-$stmt->bindValue(':dem_rate', $dem_rate, PDO::PARAM_INT);  //Integer（数値の場合 PDO::PARAM_INT)
-$stmt->bindValue(':des_rate', $des_rate, PDO::PARAM_INT);  //Integer（数値の場合 PDO::PARAM_INT)
-$stmt->bindValue(':shipment_id', $shipment_id, PDO::PARAM_INT);  //Integer（数値の場合 PDO::PARAM_INT)
-// $stmt->bindValue(':input_group', $input_group, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
 
 // 5. 実行
 $status = $stmt->execute();
@@ -67,7 +42,50 @@ $status = $stmt->execute();
 if ($status == false) {
     sql_error($stmt);
     } else {
-      redirect('./LC_main.php');
+  }
+
+$pdo = db_connect();
+
+$stmt = $pdo->prepare("INSERT INTO events(shipment_id, time_from, time_to, event_name) VALUES (:shipment_id, :arrival_time, :arrival_time, 'arrival_time')");
+$stmt->bindValue(':shipment_id', $shipment_id, PDO::PARAM_INT); //  //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':arrival_time', $arrival_time, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
+$status = $stmt->execute();
+if ($status == false) {sql_error($stmt);} else {}
+
+$stmt = $pdo->prepare("INSERT INTO events(shipment_id, time_from, time_to, event_name) VALUES (:shipment_id, :nor_tender, :nor_tender, 'nor_tender')");
+$stmt->bindValue(':shipment_id', $shipment_id, PDO::PARAM_INT); //  //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':nor_tender', $nor_tender, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
+$status = $stmt->execute();
+if ($status == false) {sql_error($stmt);} else {}
+
+$stmt = $pdo->prepare("INSERT INTO events(shipment_id, time_from, time_to, event_name) VALUES (:shipment_id, :berthed_time, :berthed_time, 'berthed_time')");
+$stmt->bindValue(':shipment_id', $shipment_id, PDO::PARAM_INT); //  //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':berthed_time', $berthed_time, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
+$status = $stmt->execute();
+if ($status == false) {sql_error($stmt);} else {}
+
+$stmt = $pdo->prepare("INSERT INTO events(shipment_id, time_from, time_to, event_name) VALUES (:shipment_id, :commencement_of_operation, :commencement_of_operation, 'commencement_of_operation')");
+$stmt->bindValue(':shipment_id', $shipment_id, PDO::PARAM_INT); //  //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':commencement_of_operation', $commencement_of_operation, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
+$status = $stmt->execute();
+if ($status == false) {sql_error($stmt);} else {}
+
+$stmt = $pdo->prepare("INSERT INTO events(shipment_id, time_from, time_to, event_name) VALUES (:shipment_id, :completion_of_operation, :completion_of_operation, 'completion_of_operation')");
+$stmt->bindValue(':shipment_id', $shipment_id, PDO::PARAM_INT); //  //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':completion_of_operation', $completion_of_operation, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
+$status = $stmt->execute();
+if ($status == false) {sql_error($stmt);} else {}
+
+$stmt = $pdo->prepare("INSERT INTO events(shipment_id, time_from, time_to, event_name) VALUES (:shipment_id, :commencement_of_laytime, :commencement_of_laytime, 'commencement_of_laytime')");
+$stmt->bindValue(':shipment_id', $shipment_id, PDO::PARAM_INT); //  //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':commencement_of_laytime', $commencement_of_laytime, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
+$status = $stmt->execute();
+
+// 6．データ登録処理後
+if ($status == false) {
+    sql_error($stmt);
+    } else {
+      redirect('./shipment_input.php?shipment_id='.$shipment_id);
 }
 
 ?>

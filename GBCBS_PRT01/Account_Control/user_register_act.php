@@ -21,7 +21,7 @@ $pdo = db_connect();
 
 // ３．SQL文を用意(データ登録：INSERT)
 $stmt = $pdo->prepare(
-  "INSERT INTO Users(user_name, user_email, user_password, user_group, user_access)
+  "INSERT INTO users(user_name, user_email, user_password, user_group, user_access)
   VALUES(:user_name, :user_email, :user_password, :user_group, :user_access)");
 
 // 4. バインド変数を用意

@@ -23,7 +23,7 @@ require_once('../tools.php');
 $pdo = db_connect();
 
 // ３．SQL文を用意(データ登録：INSERT)
-$stmt = $pdo->prepare("SELECT * FROM Users WHERE user_name = :user_name");
+$stmt = $pdo->prepare("SELECT * FROM users WHERE user_name = :user_name");
 
 // 4. バインド変数を用意
 $stmt->bindValue(':user_name', $user_name, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)

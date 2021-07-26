@@ -169,52 +169,55 @@ $_SESSION['shipment_id'] = $shipment_id;
                         }}
                     ?>
 
+
+
+
                     <?php
                     ?>
                     <tr>
                         <th>Arrival Time</th>
                         <td>
-                            <input type="text" name="arrival_time" value="
+                            <input type="datetime-local" name="arrival_time" value="
                                 <?php
-                                    $pdo = db_connect();
-                                    $stmt = $pdo->prepare("SELECT * FROM events WHERE shipment_id = :shipment_id AND event_name = 'arrival_time';");
-                                    $stmt->bindValue(':shipment_id', $shipment_id, PDO::PARAM_INT);
-                                    $status = $stmt->execute();
-                                    if($status==false){
-                                        $error = $stmt->errorInfo();
-                                        exit("ErrorQuery:".$error[2]);
-                                    }else{                                
-                                        while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
-                                            echo date('Y-m-d\TH:i', strtotime($result['time_from']));
-                                        }
-                                    }
+                                    // $pdo = db_connect();
+                                    // $stmt = $pdo->prepare("SELECT * FROM events WHERE shipment_id = :shipment_id AND event_name = 'arrival_time';");
+                                    // $stmt->bindValue(':shipment_id', $shipment_id, PDO::PARAM_INT);
+                                    // $status = $stmt->execute();
+                                    // if($status==false){
+                                    //     $error = $stmt->errorInfo();
+                                    //     exit("ErrorQuery:".$error[2]);
+                                    // }else{                                
+                                    //     while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
+                                    //         echo $result['time_from'];
+                                    //     }
+                                    // }
                                 ?>
                             ">
                         </td>
                     </tr>
                     <tr>
                         <th>Notice of Readiness Tender</th>
-                        <td><input type="datetime-local" name="contract_year" value="2022-07-25T23:55"></td>
+                        <td><input type="datetime-local" name="nor_tender" value=""></td>
                     </tr>
                     <tr>
                         <th>Berthed Time</th>
-                        <td><input type="datetime-local" name="shipment_number" value="<?=$result['shipment_number'];?>"></td>
+                        <td><input type="datetime-local" name="berthed_time" value=""></td>
                     </tr>
                     <tr>
                         <th>Commencement of Operation</th>
-                        <td><input type="datetime-local" name="operation_location" value="<?=$result['operation_location'];?>"></td>
+                        <td><input type="datetime-local" name="commencement_of_operation" value=""></td>
                     </tr>
                     <tr>
                         <th>Completion of Operation</th>
-                        <td><input type="datetime-local" name="operation_rate" value="<?=$result['operation_rate'];?>"></td>
+                        <td><input type="datetime-local" name="completion_of_operation" value=""></td>
                     </tr>
                     <tr>
                         <th>Commencement of Laytime</th>
-                        <td><input type="datetime-local" name="dem_rate" value="<?=$result['dem_rate'];?>"></td>
+                        <td><input type="datetime-local" name="commencement_of_laytime" value=""></td>
                     </tr>
                     <tr>
                         <th>Expiration of Laytime</th>
-                        <td><?=$result['des_rate'];?></td>
+                        <td></td>
                     </tr>
                 </table>
                 <button type="submit" class="key_event_register_button" style="width:100%">
