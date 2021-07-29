@@ -177,47 +177,117 @@ $_SESSION['shipment_id'] = $shipment_id;
                     <tr>
                         <th>Arrival Time</th>
                         <td>
-                            <input type="datetime-local" name="arrival_time" value="
-                                <?php
-                                    // $pdo = db_connect();
-                                    // $stmt = $pdo->prepare("SELECT * FROM events WHERE shipment_id = :shipment_id AND event_name = 'arrival_time';");
-                                    // $stmt->bindValue(':shipment_id', $shipment_id, PDO::PARAM_INT);
-                                    // $status = $stmt->execute();
-                                    // if($status==false){
-                                    //     $error = $stmt->errorInfo();
-                                    //     exit("ErrorQuery:".$error[2]);
-                                    // }else{                                
-                                    //     while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
-                                    //         echo $result['time_from'];
-                                    //     }
-                                    // }
-                                ?>
-                            ">
+                            <input type="datetime-local" name="arrival_time" id="arrival_time" value="<?php
+                                $pdo = db_connect();
+                                $stmt = $pdo->prepare("SELECT * FROM events WHERE shipment_id = :shipment_id AND event_name = 'arrival_time';");
+                                $stmt->bindValue(':shipment_id', $shipment_id, PDO::PARAM_INT);
+                                $status = $stmt->execute();
+                                if($status==false){
+                                    $error = $stmt->errorInfo();
+                                    exit("ErrorQuery:".$error[2]);
+                                }else{                                
+                                    while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
+                                        echo date('Y-m-d\TH:i',strtotime($result['time_from']));
+                                    }
+                                }
+                            ?>">
                         </td>
                     </tr>
                     <tr>
                         <th>Notice of Readiness Tender</th>
-                        <td><input type="datetime-local" name="nor_tender" value=""></td>
+                        <td><input type="datetime-local" name="nor_tender" id="nor_tender" value="<?php
+                                $pdo = db_connect();
+                                $stmt = $pdo->prepare("SELECT * FROM events WHERE shipment_id = :shipment_id AND event_name = 'nor_tender';");
+                                $stmt->bindValue(':shipment_id', $shipment_id, PDO::PARAM_INT);
+                                $status = $stmt->execute();
+                                if($status==false){
+                                    $error = $stmt->errorInfo();
+                                    exit("ErrorQuery:".$error[2]);
+                                }else{                                
+                                    while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
+                                        echo date('Y-m-d\TH:i',strtotime($result['time_from']));
+                                    }
+                                }
+                            ?>"></td>
                     </tr>
                     <tr>
                         <th>Berthed Time</th>
-                        <td><input type="datetime-local" name="berthed_time" value=""></td>
+                        <td><input type="datetime-local" name="berthed_time" id="berthed_time" value="<?php
+                                $pdo = db_connect();
+                                $stmt = $pdo->prepare("SELECT * FROM events WHERE shipment_id = :shipment_id AND event_name = 'berthed_time';");
+                                $stmt->bindValue(':shipment_id', $shipment_id, PDO::PARAM_INT);
+                                $status = $stmt->execute();
+                                if($status==false){
+                                    $error = $stmt->errorInfo();
+                                    exit("ErrorQuery:".$error[2]);
+                                }else{                                
+                                    while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
+                                        echo date('Y-m-d\TH:i',strtotime($result['time_from']));
+                                    }
+                                }
+                            ?>"></td>
                     </tr>
                     <tr>
                         <th>Commencement of Operation</th>
-                        <td><input type="datetime-local" name="commencement_of_operation" value=""></td>
+                        <td><input type="datetime-local" name="commencement_of_operation" id="commencement_of_operation" value="<?php
+                                $pdo = db_connect();
+                                $stmt = $pdo->prepare("SELECT * FROM events WHERE shipment_id = :shipment_id AND event_name = 'commencement_of_operation';");
+                                $stmt->bindValue(':shipment_id', $shipment_id, PDO::PARAM_INT);
+                                $status = $stmt->execute();
+                                if($status==false){
+                                    $error = $stmt->errorInfo();
+                                    exit("ErrorQuery:".$error[2]);
+                                }else{                                
+                                    while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
+                                        echo date('Y-m-d\TH:i',strtotime($result['time_from']));
+                                    }
+                                }
+                            ?>"></td>
                     </tr>
                     <tr>
                         <th>Completion of Operation</th>
-                        <td><input type="datetime-local" name="completion_of_operation" value=""></td>
+                        <td><input type="datetime-local" name="completion_of_operation" id="completion_of_operation" value="<?php
+                                $pdo = db_connect();
+                                $stmt = $pdo->prepare("SELECT * FROM events WHERE shipment_id = :shipment_id AND event_name = 'completion_of_operation';");
+                                $stmt->bindValue(':shipment_id', $shipment_id, PDO::PARAM_INT);
+                                $status = $stmt->execute();
+                                if($status==false){
+                                    $error = $stmt->errorInfo();
+                                    exit("ErrorQuery:".$error[2]);
+                                }else{                                
+                                    while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
+                                        echo date('Y-m-d\TH:i',strtotime($result['time_from']));
+                                    }
+                                }
+                            ?>"></td>
                     </tr>
                     <tr>
                         <th>Commencement of Laytime</th>
-                        <td><input type="datetime-local" name="commencement_of_laytime" value=""></td>
+                        <td><input type="datetime-local" name="commencement_of_laytime" id="commencement_of_laytime" value="<?php
+                                $pdo = db_connect();
+                                $stmt = $pdo->prepare("SELECT * FROM events WHERE shipment_id = :shipment_id AND event_name = 'commencement_of_laytime';");
+                                $stmt->bindValue(':shipment_id', $shipment_id, PDO::PARAM_INT);
+                                $status = $stmt->execute();
+                                if($status==false){
+                                    $error = $stmt->errorInfo();
+                                    exit("ErrorQuery:".$error[2]);
+                                }else{                                
+                                    while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
+                                        echo date('Y-m-d\TH:i',strtotime($result['time_from']));
+                                        $commencement_of_laytime = date('Y-m-d\TH:i',strtotime($result['time_from']));
+                                    }
+                                }
+                            ?>"></td>
                     </tr>
                     <tr>
                         <th>Expiration of Laytime</th>
-                        <td></td>
+                        <td><?php                          
+                            if($commencement_of_laytime == null){
+
+                            }else{
+                                echo date('Y-m-d H:i',strtotime($commencement_of_laytime)+$allowed_laytime*(60 * 60 * 24)+$sum_laytime);
+                            }
+                        ?></td>
                     </tr>
                 </table>
                 <button type="submit" class="key_event_register_button" style="width:100%">
@@ -281,6 +351,10 @@ $_SESSION['shipment_id'] = $shipment_id;
 <script>
     function beforeSubmit() {
         if(window.confirm('この内容で登録しますがよろしいでしょうか?')) {
+            if($('#arrival_time').val()=="" || $('#nor_tender').val()=="" || $('#berthed_time').val()=="" ||$('#commencement_of_operation').val()=="" ||$('#completion_of_operation').val()=="" ||$('#commencement_of_laytime').val()==""){
+                alert('入力されていない項目があります');
+                return false;
+            }
             return true;
         } else {
             return false;
@@ -302,33 +376,77 @@ $_SESSION['shipment_id'] = $shipment_id;
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 
+    $('#arrival_time').blur(function(){
+        var check_str = $(this).val();
+        if(check_str ==""){
+            alert('arrival_timeを入力してください');
+        }else{
+            if($('#nor_tender').val()==""){
+                $('#nor_tender').val(check_str);
+            }
+        }
+    });
 
-    // $('#user_name').blur(function(){
-    //     var check_str = $(this).val();
-    //     //Ajax送信開始
-    //     if(check_str){
-    //         $.ajax({
-    //             url: 'user_unique_check.php',
-    //             type:"POST",
-    //             data:{
-    //                 check: check_str,
-    //             },
-    //             // dataType: 'json',
-    //             success: function() {
-    //                 console.log("success");
-    //             },
-    //             error: function() {
-    //                 console.log("error"); //戻り値Allオブジェクト
-    //             },
+    $('#nor_tender').blur(function(){
+        var check_str = $(this).val();
+        if(check_str ==""){
+            alert('nor_tenderを入力してください');
+        }else{
+            if($('#berthed_time').val()==""){
+                $('#berthed_time').val(check_str);
+            }
+            if($('#commencement_of_laytime').val()==""){
+                $('#commencement_of_laytime').val(check_str);
+            }
+        }
+    });
 
-    //         }).done(function(flag){
-    //             if(flag == 1){
-    //                 alert('そのメールアドレスは既に登録されています');
-    //                 $('#user_name').val('');
-    //             }
-    //         })
-    //     }
-    // });
+    $('#berthed_time').blur(function(){
+        var check_str = $(this).val();
+        if(check_str ==""){
+            alert('berthed_timeを入力してください');
+        }else{
+            if($('#commencement_of_operation').val()==""){
+                $('#commencement_of_operation').val(check_str);
+            }
+        }
+    });
+
+    $('#commencement_of_operation').blur(function(){
+        var check_str = $(this).val();
+        if(check_str ==""){
+            alert('commencement_of_operationを入力してください');
+        }else{
+            if($('#completion_of_operation').val()==""){
+                $('#completion_of_operation').val(check_str);
+            }
+        }
+    });
+
+
+        //Ajax送信開始
+        // if(check_str){
+        //     $.ajax({
+        //         url: './shipment_input_autofill.php',
+        //         type:"POST",
+        //         data:{
+        //             check: check_str,
+        //         },
+        //         // dataType: 'json',
+        //         success: function() {
+        //             console.log("success");
+        //         },
+        //         error: function() {
+        //             console.log("error"); //戻り値Allオブジェクト
+        //         },
+
+        //     }).done(function(flag){
+        //         if(flag == 1){
+        //             alert('そのメールアドレスは既に登録されています');
+        //             $('#user_name').val('');
+        //         }
+        //     })
+        // }
 
 </script>
 
