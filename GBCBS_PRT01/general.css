@@ -494,3 +494,13 @@ SHIPMENT_INPUT関連
     border: 2px solid;
     border-color:transparent;
 }
+
+.event_table03 tr:nth-child(odd) td{
+    width:250px;
+    height:30px;
+    padding:2px;
+    line-height: 30px;
+    background:#E9E9E9;
+    border: 2px solid;
+    border-color:transparent;
+}

@@ -25,7 +25,8 @@ $_SESSION['shipment_id'] = $shipment_id;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../reset.css">
     <link rel="stylesheet" href="../general.css">
-    <script src="../jquery-2.1.3.min.js"></script>
+    <script src="../jquery-2.1.3.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <title>SHIPMENT_REGISTER</title>
 </head>
 
@@ -290,7 +291,7 @@ $_SESSION['shipment_id'] = $shipment_id;
                         ?></td>
                     </tr>
                 </table>
-                <button type="submit" class="key_event_register_button" style="width:100%">
+                <button type="submit" class="key_event_register_button" id="key_event_register_button" style="width:100%">
                     Key Event登録 / 詳細入力
                 </button>    
             </form>
@@ -298,57 +299,142 @@ $_SESSION['shipment_id'] = $shipment_id;
     </div>
     
     <hr class="hr01">
-
+    
     <div class="event_table01">
-        <form class="event_table02" method="post" action="">
+        <div class="event_table02">
             <table class="event_table03">
-                <tr>
-                    <th>FROM</th>
-                    <th>TO</th>
-                    <th>EVENT</th>
-                    <th>COUNT</th>
-                    <th>MANUAL</th>
-                </tr>
+                <tbody id="calculation_sheet">
+                    <tr>
+                        <th>FROM</th>
+                        <th>TO</th>
+                        <th>EVENT</th>
+                        <th>COUNT</th>
+                        <th>MANUAL</th>
+                    </tr>
 
-                <?php
-                $pdo = db_connect();
-                $stmt = $pdo->prepare("SELECT * FROM events WHERE shipment_id = :shipment_id ORDER BY time_from ASC");
-                $stmt->bindValue(':shipment_id', $shipment_id, PDO::PARAM_INT);
+                    <!-- <tr> -->
+                        <!-- <form method="post" action="" onsubmit="return before_subevent_register()"> -->
+                            <!-- <td>
+                                <input type="datetime-local" name="subevent_time_from" id="subevent_time_from" value="">
+                            </td>
+                            <td>
+                                <input type="datetime-local" name="subevent_time_to" id="subevent_time_to" value="">
+                            </td>
+                            <td>
+                                <input type="text" name="subevent_name" id="subevent_name" id="subevent_name">
+                            </td>
+                            <td>
+                                <input type="checkbox" name="subevent_count_flag" id="subevent_count_flag" checked="checked">
+                            </td>
+                            <td>
+                                <button class="subevent_register" id="subevent_register">登録</button>
+                            </td> -->
+                        <!-- </form> -->
+                    <!-- </tr> -->
+                    <?php
+                        $pdo = db_connect();
+                        $stmt = $pdo->prepare("SELECT * FROM events WHERE shipment_id = :shipment_id ORDER BY time_from ASC");
+                        $stmt->bindValue(':shipment_id', $shipment_id, PDO::PARAM_INT);
 
-                //3. 実行
-                $status = $stmt->execute();
-                //4．データ表示
+                        //3. 実行
+                        $status = $stmt->execute();
+                        //4．データ表示
+                        if($status==false) {
+                        //execute（SQL実行時にエラーがある場合）
+                        $error = $stmt->errorInfo();
+                        exit("ErrorQuery:".$error[2]);
+                        }else{
+                        //Selectデータの数だけ自動でループしてくれる
+                        //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
+                        while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
+                    ?>
+                    <tr>
+                        <td><?= $result['time_from'];?></td>
+                        <td><?= $result['time_to'];?></td>
+                        <td><?= $result['event_name'];?></td>
+                        <td>
+                            <?php
+                                if($result['count_flag']==1){
+                                    echo '<input type="checkbox" checked="checked">';
+                                }else{
+                                    echo '<input type="checkbox"';
+                                }
+                            ?>
+                        </td>
+                        <td><?php echo '<a href="./subevent_revise.php?event_id='.$result['event_id'].'">(修正/削除)</a>'?></td>
+                    </tr>
+                    <?php
+                        }}
+                    ?>
+                    <tr>
+                        <!-- <form method="post" action="" onsubmit="return before_subevent_register()"> -->
+                            <td>
+                                <input type="datetime-local" name="subevent_time_from" id="subevent_time_from" value="">
+                            </td>
+                            <td>
+                                <input type="datetime-local" name="subevent_time_to" id="subevent_time_to" value="">
+                            </td>
+                            <td>
+                                <input type="text" name="subevent_name" id="subevent_name" id="subevent_name">
+                            </td>
+                            <td>
+                                <input type="checkbox" name="subevent_count_flag" id="subevent_count_flag" checked="checked">
+                            </td>
+                            <td>
+                                <button class="subevent_register" id="subevent_register">登録</button>
+                            </td>
+                        <!-- </form> -->
+                    </tr>
 
-                if($status==false) {
-                //execute（SQL実行時にエラーがある場合）
-                $error = $stmt->errorInfo();
-                exit("ErrorQuery:".$error[2]);
-                }else{
-                //Selectデータの数だけ自動でループしてくれる
-                //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
-                while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
-                ?>
-                <tr>
-                    <td><?= $result['time_from'];?></td>
-                    <td><?= $result['time_to'];?></td>
-                    <td><?= $result['event_name'];?></td>
-                    <td><?= $result['count_flag'];?></td>
-                    <td><?php echo '<a href="shipment_input.php?event_id='.$result['event_id'].'">[ (入力) / </a>'.'<a href="shipment_revise.php?event_id='.$result['event_id'].'">(修正/削除)]</a>'?></td>
-                </tr>
-
-                <?php
-                }}
-                ?>
+                </tbody>
             </table>
-        </form>
+            <button id="page_reload">ページを更新</button>
+        </div>
     </div>
+    
+    <hr class="hr01">
+    
+    <div class="event_table01">
+        <table class="laytime_count_table01">
+            
+        </table>
+    </div>
+
+
+
+
+
+
 
 
 
 
 </body>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" charset="utf-8"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script>
+    $(function(){
+        $('tbody').sortable();
+
+        // $('#addRow').click(function(){
+        //     var html = '<tr><form method="post" action="subevent_input_act.php">a<td><input type="datetime-local" name="subevent_time_from" id="subevent_time_from" value=""></td><td><input type="datetime-local" name="subevent_time_to" id="subevent_time_to" value=""></td><td><input type="text" name="subevent_name" id="subevent_name" id="subevent_name"></td><td><input type="checkbox" name="subevent_count_flag" id="subevent_count_flag" checked="checked"></td><td><button class="subevent_register" id="subevent_register">登録</button></td></form></tr>';
+        //     $('#calculation_sheet').append(html);
+        // });
+
+        // $(document).on('click', '.remove', function() {
+        //     $(this).parents('tr').remove();
+        // });
+
+        // $('#getValues').click(function(){
+        //     var values = [];
+        //     $('input[name="name"]').each(function(i, elem){
+        //         values.push($(elem).val());
+        //     });
+        //     alert(values.join(', '));
+        // });
+    });
+
     function beforeSubmit() {
         if(window.confirm('この内容で登録しますがよろしいでしょうか?')) {
             if($('#arrival_time').val()=="" || $('#nor_tender').val()=="" || $('#berthed_time').val()=="" ||$('#commencement_of_operation').val()=="" ||$('#completion_of_operation').val()=="" ||$('#commencement_of_laytime').val()==""){
@@ -373,7 +459,6 @@ $_SESSION['shipment_id'] = $shipment_id;
 </script>
 
 <!--Key_Event入力-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 
     $('#arrival_time').blur(function(){
@@ -424,29 +509,75 @@ $_SESSION['shipment_id'] = $shipment_id;
     });
 
 
-        //Ajax送信開始
-        // if(check_str){
-        //     $.ajax({
-        //         url: './shipment_input_autofill.php',
-        //         type:"POST",
-        //         data:{
-        //             check: check_str,
-        //         },
-        //         // dataType: 'json',
-        //         success: function() {
-        //             console.log("success");
-        //         },
-        //         error: function() {
-        //             console.log("error"); //戻り値Allオブジェクト
-        //         },
 
-        //     }).done(function(flag){
-        //         if(flag == 1){
-        //             alert('そのメールアドレスは既に登録されています');
-        //             $('#user_name').val('');
-        //         }
-        //     })
-        // }
+
+    // function before_subevent_register() {
+    //     if(window.confirm('この内容で登録しますがよろしいでしょうか?')) {
+    //         if($('#arrival_time').val()=="" || $('#nor_tender').val()=="" || $('#berthed_time').val()=="" ||$('#commencement_of_operation').val()=="" ||$('#completion_of_operation').val()=="" ||$('#commencement_of_laytime').val()==""){
+    //             alert('入力されていない項目があります');
+    //             return false;
+    //         }
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
+    $('#subevent_time_from').blur(function(){
+        var check_str = $(this).val();
+        if($('#subevent_time_to').val()==""){
+            $('#subevent_time_to').val(check_str);
+        }
+    });
+
+    $('#subevent_register').on('click',function(){
+        var subevent_time_from = $('#subevent_time_from').val();
+        var subevent_time_to = $('#subevent_time_to').val();
+        var subevent_name = $('#subevent_name').val();
+        var subevent_count_flag = 1;
+
+        if($('#subevent_count_flag').prop("checked") == true){
+            subevent_count_flag=1;
+        }else{
+            subevent_count_flag=0;
+        };
+
+        if($('#subevent_time_from').val()=="" || $('subevent_time_to').val()=="" || $('#subevent_name').val()==""){
+            alert('入力されていない項目があります');
+            return false;
+        }else{
+            // Ajax送信開始
+            $.ajax({
+            url: 'subevent_input_act.php',
+            type:"POST",
+            data:{
+                subevent_time_from: subevent_time_from,
+                subevent_time_to: subevent_time_to,
+                subevent_name: subevent_name,
+                subevent_count_flag: subevent_count_flag,
+            },
+            // dataType: 'json',
+            success: function() {
+                console.log("success");
+            },
+            error: function() {
+                console.log("error"); //戻り値Allオブジェクト
+            },
+
+            }).done(function(){
+                alert('登録しました');
+                $('#subevent_time_from').replaceWith(subevent_time_from);
+                $('#subevent_time_to').replaceWith(subevent_time_to);
+                $('#subevent_name').replaceWith(subevent_name);
+                location.reload();
+            })
+        }
+    });
+
+    $('#page_reload').on('click', function(){
+        location.reload();
+    })
+
 
 </script>
 
