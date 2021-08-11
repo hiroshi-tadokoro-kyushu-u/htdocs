@@ -504,3 +504,35 @@ SHIPMENT_INPUT関連
     border: 2px solid;
     border-color:transparent;
 }
+
+/*LAYTIME COUNT TABLE*/
+
+
+.laytime_count_table01{
+    border: 2px solid;
+    border-color: #E9E9E9;
+    border-radius: 8px;
+    background:white;
+    border-collapse: collapse;   
+    text-align: center;
+}
+
+.laytime_count_table01 td{
+    width:250px;
+    height:30px;
+    padding:2px;
+    line-height: 30px;
+    background:white;
+    border: 2px solid;
+    border-color:transparent;
+}
+
+.laytime_count_table01 tr:nth-child(odd) td{
+    width:250px;
+    height:30px;
+    padding:2px;
+    line-height: 30px;
+    background:#E9E9E9;
+    border: 2px solid;
+    border-color:transparent;
+}

@@ -13,6 +13,14 @@ $user_id = $_SESSION['user_id'];
 $shipment_id = $_GET['shipment_id'];
 $_SESSION['shipment_id'] = $shipment_id;
 
+//LAYTIME CALCULATION用の関数用意
+$commencement_of_laytime = null;
+$allowed_laytime = null;
+$total_nocount_time = null;
+$completion_of_operation = null;
+$dem_rate = null;
+$des_rate = null;
+
 //以下ログインユーザーのみ
 
 ?>
@@ -116,12 +124,18 @@ $_SESSION['shipment_id'] = $shipment_id;
                 </tr>
                 <tr>
                     <th>滞船料率</th>
-                    <td><?=$result['dem_rate'];?></td>
+                    <td><?php
+                        echo $result['dem_rate'];
+                        $dem_rate = $result['dem_rate'];
+                    ?></td>
                 </tr>
                 <tr>
                     <th>早出料率</th>
-                    <td><?=$result['des_rate'];?></td>
-            </tr>
+                    <td><?php
+                        echo $result['des_rate'];
+                        $des_rate = $result['des_rate'];
+                    ?></td>
+                </tr>
             <?php
             }}
             ?>
@@ -258,6 +272,7 @@ $_SESSION['shipment_id'] = $shipment_id;
                                 }else{                                
                                     while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
                                         echo date('Y-m-d\TH:i',strtotime($result['time_from']));
+                                        $completion_of_operation = date('Y-m-d\TH:i',strtotime($result['time_from']));
                                     }
                                 }
                             ?>"></td>
@@ -286,7 +301,7 @@ $_SESSION['shipment_id'] = $shipment_id;
                             if($commencement_of_laytime == null){
 
                             }else{
-                                echo date('Y-m-d H:i',strtotime($commencement_of_laytime)+$allowed_laytime*(60 * 60 * 24)+$sum_laytime);
+                                echo date('Y-m-d H:i',strtotime($commencement_of_laytime)+$allowed_laytime*(60 * 60 * 24)+$total_nocount_time);
                             }
                         ?></td>
                     </tr>
@@ -357,7 +372,9 @@ $_SESSION['shipment_id'] = $shipment_id;
                                 if($result['count_flag']==1){
                                     echo '<input type="checkbox" checked="checked">';
                                 }else{
-                                    echo '<input type="checkbox"';
+                                    echo '<input type="checkbox">';
+                                    $time_dif = (strtotime($result['time_to']) - strtotime($result['time_from']))/60/60/24;
+                                    $total_nocount_time = $total_nocount_time + $time_dif;
                                 }
                             ?>
                         </td>
@@ -395,9 +412,82 @@ $_SESSION['shipment_id'] = $shipment_id;
     <hr class="hr01">
     
     <div class="event_table01">
-        <table class="laytime_count_table01">
-            
-        </table>
+        <div>「LAYTIME CALCULATION」
+            <table class="laytime_count_table01">
+                <tr>
+                    <td>
+                        Commencement_of_Laytime <br>
+                        <?php
+                            echo date('Y-m-d H:i',strtotime($commencement_of_laytime));
+                        ?>
+                    </td>
+                    <td>
+                        Allowed_Laytime <br>
+                        <?=$allowed_laytime;?>days
+                    </td>
+                    <td>
+                        Total_no count_time <br>
+                        <?=$total_nocount_time;?>days
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        (A)Expiration_of_Laytime
+                    </td>
+                    <td>
+                        <?php    
+                        echo date('Y-m-d H:i',strtotime($commencement_of_laytime)+$allowed_laytime*(60 * 60 * 24)+$total_nocount_time*(60 * 60 * 24));
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                       (B)Completion_of_Operation
+                    </td>
+                    <td>
+                        <?php    
+                        echo date('Y-m-d H:i',strtotime($completion_of_operation));
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                <td colspan="2">
+                       (B) - (A)
+                    </td>
+                    <td>
+                        <?php    
+                        echo $dem_des = (strtotime($completion_of_operation) - (strtotime($commencement_of_laytime)+$allowed_laytime*(60 * 60 * 24)+$total_nocount_time*(60 * 60 * 24)))/60/60/24;
+                        ?>days
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        (+)Demurrage Amount <br>
+                        (-)Despatch Amount
+                    </td>
+                    <td>
+                        <?php
+                            if($dem_des >=0){
+                                echo 'Demurrage Rate<br>'.$dem_rate.'USD/day';
+                            }else{
+                                echo 'Despatch Rate<br>'.$des_rate.'USD/day';
+                            }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                            if($dem_des >=0){
+                                echo $dem_des_amount = ((strtotime($completion_of_operation) - (strtotime($commencement_of_laytime)+$allowed_laytime*(60 * 60 * 24)+$total_nocount_time*(60 * 60 * 24)))/60/60/24)*$dem_rate.'USD';
+                            }else{
+                                echo $dem_des_amount = ((strtotime($completion_of_operation) - (strtotime($commencement_of_laytime)+$allowed_laytime*(60 * 60 * 24)+$total_nocount_time*(60 * 60 * 24)))/60/60/24)*$des_rate.'USD';
+                            }
+                        ?>
+
+                    </td>
+                </tr>
+            </table>
+
+        </div>
     </div>
 
 
