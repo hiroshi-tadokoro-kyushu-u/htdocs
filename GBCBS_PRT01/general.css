@@ -1,25 +1,35 @@
 @charset "utf-8";
 
-/* メインカラー
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
 
-グレーバック #E9E9E9
-グレーアクセント #CDCDCD
-ブルーメイン #2988bc
-ブルーアクセント #2571f5
-ブルーサブ #99D3DF
-オレンジサブ #ffdd33
+body{
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 400;
+}
 
-*/
+:root{
+    /* BASE CALOR */
+    --main--color01:#3D4490;
+    --main--color02:#5994FF;
+    --main--color03:#83C3FF;
+    /*GRAY*/
+    --sub--color01:#3d3e4e;
+    --sub--color02:#9e9fac;
+    --sub--color03:#f9f9fa;
+}
+
+/* 共通ヘッダー */
 
 .site_header01{
-    background: white;
+    background:var(--sub--color01);
     display: flex;
     justify-content: space-between;
     padding: 10px;
     width: auto;
 }
 .site_header02{
-    background: #2571f5;
+    background: var(--main--color01);
     display: flex;
     justify-content: space-between;
     padding: 10px;
@@ -43,6 +53,19 @@
 .gnav_menu_item01{
     margin-left: 30px;
     margin-right: 10px;
+    color:var(--sub--color03);
+    font-weight: bold;
+}
+
+.gnav_menu_login_user{
+    margin-left: 30px;
+    margin-right: 10px;
+    color:var(--sub--color03);
+    font-weight: bold;
+    display: flex;
+    vertical-align:middle;
+    line-height: 1.5rem;
+    padding: 10px 0 10px 0;
 }
 
 .gnav_menu_item02{
@@ -51,7 +74,7 @@
 }
 
 .gnav_menu_item01 a{
-    color: #2988bc;
+    color:var(--sub--color03);
     text-decoration: none;
     font-weight: bold;
     padding: 5px;
@@ -59,20 +82,39 @@
     border: 2px solid;
     border-color:transparent;
     border-radius: 8px;
-    background: #ffdd33;
-    
+    background:transparent;
 }
 
 .gnav_menu_item02 a{
-    color: white;
+    color:var(--sub--color03);
     text-decoration: none;
     font-weight: bold;
 }
 
+.footer_position{
+    background: var(--main--color01);
+    padding: 10px 0 10px 0;
+    position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
+    width: 100%;
+}
+
+.footer_text{
+    color:var(--sub--color03);
+    font-family: 'oswald', sans-serif;
+    font-weight: 600;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    /* letter-spacing: 0.2em; */
+}
+
+
+/* 個別ページ */
 
 .index_background{
     /* background: linear-gradient(315deg,#99D3DF,#E9E9E9); */
-    background : #E9E9E9;
+    background : var(--sub--color01);
     height:auto;
 }
 
@@ -142,7 +184,7 @@
 
 .main_function{
     height:500px;
-    width:800px;
+    width:1000px;
     margin:10px;
     font-size: 24px;
     text-align: center;
@@ -156,12 +198,12 @@
     border: 5px solid;
     border-color: #ffffff;
     border-radius: 8px;
-    background:#99D3DF;
+    background:var(--sub--color03);
 }
 
 .function_picture{
     height:200px;
-    width:300px;
+    width:450px;
     margin:10px;
     color:black;
     font-size: 18px;
@@ -175,6 +217,10 @@
     color:black;
     font-size: 18px;
     text-decoration:none;
+    border: 2px solid;
+    border-color: var(--main--color02);
+    border-radius: 8px;
+
 }
 
 /* 
@@ -182,21 +228,22 @@ LOGINフォーム関連
 */
 
 .login_form_frame{
-    height:350px;
+    height:450px;
     width:800px;
-    margin:10px auto 10pc auto;
-    font-size: 18px;
+    margin:30px auto 30px auto;
+    font-size: 24px;
+    font-family: 'oswald', sans-serif;
+    font-weight: 600;
     text-align: center;
-    font-weight: bold;
-    font-style: italic;
+    /* font-style: italic; */
     display: flex;
     flex-direction:column;
     justify-content:space-evenly;
-    color:black;
-    border: 5px solid;
-    border-color: #ffffff;
+    color:var(--sub--color01);
+    border: 2px solid;
+    border-color: var(--sub--color03);
     border-radius: 8px;
-    background:#99D3DF;
+    background:var(--main--color03);
 }
 
 .login_form_frame form{
@@ -209,13 +256,16 @@ LOGINフォーム関連
 .login_form_button{
     margin: 20px;
     width: 400px;
-    height: 36px;
+    height: 54px;
     border: 2px solid;
-    border-color: #ffffff;
+    border-color: var(--sub--color03);
     border-radius: 8px;
-    background:#ffdd33;
-    font-size: 18px;
-
+    background:var(--main--color02);
+    font-size: 24px;
+    font-family: 'oswald', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    color:var(--sub--color03)
 }
 
 .login_form_input{
@@ -223,16 +273,17 @@ LOGINフォーム関連
 }
 
 .login_form_input th,td{
-    padding:10px;
+    padding:30px 0 30px 0;
     width: 600px;
-    border:solid 2px black;
-    background:#E9E9E9;
+    border:solid 2px transparent;
+    background:var(--sub--color03);
 }
 
 .login_form_input input{
     padding:10px;
     width: 500px;
-    border:solid 2px black;
+    border:solid 2px transparent;
+    border-bottom: solid 1px var(--sub--color01);
     background: white;
 }
 
@@ -252,7 +303,8 @@ LOGINフォーム関連
     border: 2px solid;
     border-color: #ffffff;
     border-radius: 8px;
-    background:#ffdd33;
+    background:var(--main--color02);
+    color: var(--sub--color03);
     font-size: 18px;
     letter-spacing: 0.2em;
 }
@@ -281,14 +333,13 @@ LOGINフォーム関連
     display: flex;
     justify-content:space-evenly;
     align-items:center;
-
 }
 
 .shipment_table02{
     border: 2px solid;
-    border-color: #E9E9E9;
+    border-color: var(--sub--color03);
     border-radius: 8px;
-    background:white;
+    background:var(--sub--color03);
     border-collapse: collapse;   
     text-align: center;
 }
@@ -300,8 +351,8 @@ LOGINフォーム関連
     padding:2px;
     line-height: 30px;
     border: 2px solid;
-    background-color: #99D3DF;
-    border-color: #E9E9E9;
+    background-color: var(--main--color03);
+    border-color:var(--sub--color03);
     border-radius: 8px;
 }
 
@@ -310,9 +361,9 @@ LOGINフォーム関連
     height:30px;
     padding:2px;
     line-height: 30px;
-    background:white;
+    background:var(--sub--color03);
     border: 2px solid;
-    border-color: #E9E9E9;
+    border-color: var(--sub--color03);
     border-radius: 8px;
 }
 
