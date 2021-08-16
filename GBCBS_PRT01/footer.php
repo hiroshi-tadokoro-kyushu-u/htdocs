@@ -1,10 +1,10 @@
 <?php
 
 //SESSIONスタート
-session_start();
+// session_start();
 
-$user_name = $_SESSION['user_name'];
-$user_id = $_SESSION['user_id'];
+// $user_name = $_SESSION['user_name'];
+// $user_id = $_SESSION['user_id'];
 
 ?>
 

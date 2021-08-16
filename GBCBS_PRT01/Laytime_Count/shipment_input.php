@@ -16,12 +16,13 @@ $_SESSION['shipment_id'] = $shipment_id;
 //LAYTIME CALCULATION用の関数用意
 $commencement_of_laytime = null;
 $allowed_laytime = null;
-$total_nocount_time = null;
+$total_nocount_time = 0;
 $completion_of_operation = null;
 $dem_rate = null;
 $des_rate = null;
 
-//以下ログインユーザーのみ
+$path = '../'; 
+include $path.'header.php';
 
 ?>
 
@@ -31,43 +32,16 @@ $des_rate = null;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../reset.css">
-    <link rel="stylesheet" href="../general.css">
-    <script src="../jquery-2.1.3.min.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-    <title>SHIPMENT_REGISTER</title>
+    <link rel="stylesheet" href="<?php echo $path; ?>reset.css">
+    <link rel="stylesheet" href="<?php echo $path; ?>general.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="<?php echo $path; ?>jquery-2.1.3.min.js"></script>
+    <title>SHIPMENT INPUT</title>
 </head>
 
 <!--
 以下、共通ヘッダー
 -->
-
-<div class="site_header01">
-    <a href="../index.php">
-        <img class="site_logo" src="../logo.png">
-        </img>
-    </a>
-    <nav class="gnav">
-        <ul class="gnav_menu">
-            <li>LOGIN USER : <?= $user_name; ?></li>
-            <li class="gnav_menu_item01"><a href="../Account_Control/login.php">LOG-IN</a></li>
-            <li class="gnav_menu_item01"><a href="../Account_Control/user_register.php">User登録</a></li>
-            <li class="gnav_menu_item01"><a href="">XXX</a></li>
-        </ul>
-    </nav>
-</div>
-
-<div class="site_header02">
-    <div></div>
-    <nav class="gnav">
-        <ul class="gnav_menu">
-            <li class="gnav_menu_item02"><a href="./LC_main.php">LAYTIME CALCULATION</a></li>
-            <li class="gnav_menu_item02"><a href="">SHIPMENT LOCATION</a></li>
-            <li class="gnav_menu_item02"><a href="">DELIVERY MANAGEMENT</a></li>
-            <li class="gnav_menu_item02"><a href="">VESSEL NOMINATION</a></li>
-        </ul>
-    </nav>
-</div>
 
 <!-- 
 以下、メイン部分
@@ -96,7 +70,7 @@ $des_rate = null;
                 while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
                 ?>
                 <tr>
-                    <th>「入力済み情報」</th>
+                    <th colspan="2">「入力済み情報」</th>
                 </tr>
                 <tr>
                     <th>船名</th>
@@ -378,7 +352,7 @@ $des_rate = null;
                                 }
                             ?>
                         </td>
-                        <td><?php echo '<a href="./subevent_revise.php?event_id='.$result['event_id'].'">(修正/削除)</a>'?></td>
+                        <td><?php echo '<a href="./subevent_revise.php?event_id='.$result['event_id'].'"><span class="material-icons edit">update</span>修正/削除</a>'?></td>
                     </tr>
                     <?php
                         }}
@@ -491,15 +465,12 @@ $des_rate = null;
     </div>
 
 
-
-
-
-
-
-
-
-
 </body>
+
+<?php
+    include $path.'footer.php';
+?>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" charset="utf-8"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>

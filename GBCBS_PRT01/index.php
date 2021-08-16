@@ -1,6 +1,7 @@
 <?php
 
 $path = './'; 
+include $path.'header.php';
 
 ?>
 
@@ -17,12 +18,6 @@ $path = './';
     <title>INDEX</title>
 </head>
 
-<!--
-以下、共通ヘッダー
--->
-<?php
-    include $path.'header.php';
-?>
 
 <!-- 
 以下、メイン部分

@@ -13,6 +13,7 @@ $user_id = $_SESSION['user_id'];
 //以下ログインユーザーのみ
 
 $path = '../'; 
+include $path.'header.php';
 
 
 ?>
@@ -34,9 +35,6 @@ $path = '../';
 以下、共通ヘッダー
 -->
 
-<?php
-    include $path.'header.php';
-?>
 
 <!-- 
 以下、メイン部分
@@ -83,7 +81,7 @@ $path = '../';
                     <td><?= $result['contract_year'];?></td>
                     <td><?= $result['shipment_number'];?></td>
                     <td><?= $result['work_status'];?></td>
-                    <td><?php echo '<a href="shipment_input.php?shipment_id='.$result['shipment_id'].'">[ (入力) / </a>'.'<a href="shipment_revise.php?shipment_id='.$result['shipment_id'].'">(修正/削除)]</a>'?></td>
+                    <td><?php echo '<a href="shipment_input.php?shipment_id='.$result['shipment_id'].'"><span class="material-icons edit">edit</span>入力</a>'.'<span> / </span>'.'<a href="shipment_revise.php?shipment_id='.$result['shipment_id'].'"><span class="material-icons edit">update</span>修正/削除</a>'?></td>
                 </tr>
 
                 <?php
