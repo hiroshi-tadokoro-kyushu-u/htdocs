@@ -76,10 +76,19 @@ $stmt->bindValue(':completion_of_operation', $completion_of_operation, PDO::PARA
 $status = $stmt->execute();
 if ($status == false) {sql_error($stmt);} else {}
 
+$stmt = $pdo->prepare("INSERT INTO events(shipment_id, time_from, time_to, event_name) VALUES (:shipment_id, :commencement_of_laytime, :commencement_of_laytime, 'expiration_of_laytime')");
+$stmt->bindValue(':shipment_id', $shipment_id, PDO::PARAM_INT); //  //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':commencement_of_laytime', $commencement_of_laytime, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
+$status = $stmt->execute();
+if ($status == false) {sql_error($stmt);} else {}
+
 $stmt = $pdo->prepare("INSERT INTO events(shipment_id, time_from, time_to, event_name) VALUES (:shipment_id, :commencement_of_laytime, :commencement_of_laytime, 'commencement_of_laytime')");
 $stmt->bindValue(':shipment_id', $shipment_id, PDO::PARAM_INT); //  //Integer（数値の場合 PDO::PARAM_INT)
 $stmt->bindValue(':commencement_of_laytime', $commencement_of_laytime, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
 $status = $stmt->execute();
+
+
+
 
 // 6．データ登録処理後
 if ($status == false) {

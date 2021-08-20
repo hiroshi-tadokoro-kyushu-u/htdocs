@@ -276,6 +276,8 @@ include $path.'header.php';
 
                             }else{
                                 echo date('Y-m-d H:i',strtotime($commencement_of_laytime)+$allowed_laytime*(60 * 60 * 24)+$total_nocount_time);
+                                $eol = date('Y-m-d H:i',strtotime($commencement_of_laytime)+$allowed_laytime*(60 * 60 * 24)+$total_nocount_time);
+                                expiration_of_laytime_update($eol,$shipment_id);
                             }
                         ?></td>
                     </tr>

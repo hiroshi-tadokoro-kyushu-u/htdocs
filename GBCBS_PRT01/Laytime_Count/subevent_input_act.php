@@ -30,6 +30,8 @@ $stmt->bindValue(':subevent_name', $subevent_name, PDO::PARAM_STR);  //Integer�
 $stmt->bindValue(':subevent_count_flag', $subevent_count_flag, PDO::PARAM_INT);  //Integer（数値の場合 PDO::PARAM_INT)
 $status = $stmt->execute();
 
+
+
 if($status==false) {
   //execute（SQL実行時にエラーがある場合）
   $error = $stmt->errorInfo();
