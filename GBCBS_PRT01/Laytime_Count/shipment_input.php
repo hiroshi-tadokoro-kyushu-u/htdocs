@@ -141,7 +141,9 @@ include $path.'header.php';
                            
                     <tr>
                         <th>Loading Volume(MT)</th>
-                        <td><input type="number" name="loading_volume" value="<?=$result['loading_volume'];?>"></td>
+                        <td><input type="number" name="loading_volume" id="loading_volume" value="<?php
+                            echo $result['loading_volume'];?>">
+                        </td>
                     </tr>
 
                     <tr>
@@ -478,7 +480,7 @@ include $path.'header.php';
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script>
     $(function(){
-        $('tbody').sortable();
+        $('#calculation_sheet').sortable();
 
         // $('#addRow').click(function(){
         //     var html = '<tr><form method="post" action="subevent_input_act.php">a<td><input type="datetime-local" name="subevent_time_from" id="subevent_time_from" value=""></td><td><input type="datetime-local" name="subevent_time_to" id="subevent_time_to" value=""></td><td><input type="text" name="subevent_name" id="subevent_name" id="subevent_name"></td><td><input type="checkbox" name="subevent_count_flag" id="subevent_count_flag" checked="checked"></td><td><button class="subevent_register" id="subevent_register">登録</button></td></form></tr>';
@@ -571,7 +573,14 @@ include $path.'header.php';
         }
     });
 
+    //ページ読み込み時にinputを無効か
+    $(document).ready(function(){
+        if($('#loading_volume').val()!=""){
+            document.getElementById("loading_volume").setAttribute("readOnly", true);
+        }
 
+        
+    });
 
 
     // function before_subevent_register() {
@@ -592,7 +601,8 @@ include $path.'header.php';
             $('#subevent_time_to').val(check_str);
         }
     });
-
+    
+    // Ajax通信の登録
     $('#subevent_register').on('click',function(){
         var subevent_time_from = $('#subevent_time_from').val();
         var subevent_time_to = $('#subevent_time_to').val();
