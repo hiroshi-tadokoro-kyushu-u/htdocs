@@ -116,6 +116,8 @@ include $path.'header.php';
             </table>
         </div>
 
+
+<!-- MAIN EVENT入力部分 -->
         <div class="shipment_table04_outline">
             <form method="post" action="./event_input_act.php" onsubmit="return beforeSubmit()">
                 <table class="shipment_table05">
@@ -141,7 +143,7 @@ include $path.'header.php';
                            
                     <tr>
                         <th>Loading Volume(MT)</th>
-                        <td><input type="number" name="loading_volume" id="loading_volume" value="<?php
+                        <td><input type="number" name="loading_volume" id="loading_volume" min="1" value="<?php
                             echo $result['loading_volume'];?>">
                         </td>
                     </tr>
@@ -160,8 +162,7 @@ include $path.'header.php';
                         }}
                     ?>
 
-
-
+<!--KEY TIME入力部分-->
 
                     <?php
                     ?>
@@ -293,6 +294,8 @@ include $path.'header.php';
     
     <hr class="hr01">
     
+<!--TIME SHEET部分-->
+
     <div class="event_table01">
         <div class="event_table02">
             <table class="event_table03">
@@ -348,9 +351,9 @@ include $path.'header.php';
                         <td>
                             <?php
                                 if($result['count_flag']==1){
-                                    echo '<input type="checkbox" checked="checked">';
+                                    echo '<input type="checkbox" checked="checked" disabled="disabled">';
                                 }else{
-                                    echo '<input type="checkbox">';
+                                    echo '<input type="checkbox" disabled="disabled">';
                                     $time_dif = (strtotime($result['time_to']) - strtotime($result['time_from']))/60/60/24;
                                     $total_nocount_time = $total_nocount_time + $time_dif;
                                 }
@@ -389,6 +392,8 @@ include $path.'header.php';
     
     <hr class="hr01">
     
+<!--LAYTIME CAL部分-->
+
     <div class="event_table01">
         <div>「LAYTIME CALCULATION」
             <table class="laytime_count_table01">
@@ -405,7 +410,8 @@ include $path.'header.php';
                     </td>
                     <td>
                         Total_no count_time <br>
-                        <?=$total_nocount_time;?>days
+                        <?=$total_nocount_time;?>days<br>
+                        (<?=floor($total_nocount_time);?> d / <?= floor(($total_nocount_time - floor($total_nocount_time))*24);?> h / <?= floor((($total_nocount_time - floor($total_nocount_time))*24 - floor(($total_nocount_time - floor($total_nocount_time))*24))*60);?> m)
                     </td>
                 </tr>
                 <tr>
@@ -529,7 +535,7 @@ include $path.'header.php';
     $('#arrival_time').blur(function(){
         var check_str = $(this).val();
         if(check_str ==""){
-            alert('arrival_timeを入力してください');
+            alert('arrival_timeを入力してください。アラートが繰り返し出る場合は「戻る」若しくは「更新」を押して下さい');
         }else{
             if($('#nor_tender').val()==""){
                 $('#nor_tender').val(check_str);
@@ -540,7 +546,7 @@ include $path.'header.php';
     $('#nor_tender').blur(function(){
         var check_str = $(this).val();
         if(check_str ==""){
-            alert('nor_tenderを入力してください');
+            alert('nor_tenderを入力してください。アラートが繰り返し出る場合は「戻る」若しくは「更新」を押して下さい');
         }else{
             if($('#berthed_time').val()==""){
                 $('#berthed_time').val(check_str);
@@ -554,7 +560,7 @@ include $path.'header.php';
     $('#berthed_time').blur(function(){
         var check_str = $(this).val();
         if(check_str ==""){
-            alert('berthed_timeを入力してください');
+            alert('berthed_timeを入力してください。アラートが繰り返し出る場合は「戻る」若しくは「更新」を押して下さい');
         }else{
             if($('#commencement_of_operation').val()==""){
                 $('#commencement_of_operation').val(check_str);
@@ -565,7 +571,7 @@ include $path.'header.php';
     $('#commencement_of_operation').blur(function(){
         var check_str = $(this).val();
         if(check_str ==""){
-            alert('commencement_of_operationを入力してください');
+            alert('commencement_of_operationを入力してください。アラートが繰り返し出る場合は「戻る」若しくは「更新」を押して下さい');
         }else{
             if($('#completion_of_operation').val()==""){
                 $('#completion_of_operation').val(check_str);
@@ -578,9 +584,32 @@ include $path.'header.php';
         if($('#loading_volume').val()!=""){
             document.getElementById("loading_volume").setAttribute("readOnly", true);
         }
-
+        if($('#arrival_time').val()!=""){
+            document.getElementById("arrival_time").setAttribute("readOnly", true);
+        }
+        if($('#nor_tender').val()!=""){
+            document.getElementById("nor_tender").setAttribute("readOnly", true);
+        }
+        if($('#berthed_time').val()!=""){
+            document.getElementById("berthed_time").setAttribute("readOnly", true);
+        }
+        if($('#commencement_of_operation').val()!=""){
+            document.getElementById("commencement_of_operation").setAttribute("readOnly", true);
+        }
+        if($('#completion_of_operation').val()!=""){
+            document.getElementById("completion_of_operation").setAttribute("readOnly", true);
+        }
+        if($('#commencement_of_laytime').val()!=""){
+            document.getElementById("commencement_of_laytime").setAttribute("readOnly", true);
+        }
+        if($('#commencement_of_laytime').val()!=""){
+            document.getElementById("key_event_register_button").setAttribute("disabled", true);
+            $('#key_event_register_button').css({background:'var(--sub--color04)'});
+        }
         
     });
+
+
 
 
     // function before_subevent_register() {
@@ -601,7 +630,15 @@ include $path.'header.php';
             $('#subevent_time_to').val(check_str);
         }
     });
-    
+
+    $('#subevent_time_to').blur(function(){
+        if($('#subevent_time_to').val() < $('#subevent_time_from').val()){
+            alert('toがfromより前の時点となってます、再度入力してください。アラートが繰り返し出る場合は「戻る」若しくは「更新」を押して下さい。');
+            $('#subevent_time_to').val("");
+        }
+    });
+
+
     // Ajax通信の登録
     $('#subevent_register').on('click',function(){
         var subevent_time_from = $('#subevent_time_from').val();

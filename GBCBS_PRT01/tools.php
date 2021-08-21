@@ -36,7 +36,7 @@ function redirect($file_name){
 //ログインチェック
 function loginCheck(){
   if( $_SESSION["chk_ssid"] != session_id() ){
-    exit('LOGIN ERROR');
+    exit('LOGIN ERROR / 戻るを押して、画面右上からログインして下さい<br>ユーザー登録がお済み出ない方は先にユーザー登録→ログインの順にご対応ください。');
   }else{
     session_regenerate_id(true);
     $_SESSION['chk_ssid'] = session_id();

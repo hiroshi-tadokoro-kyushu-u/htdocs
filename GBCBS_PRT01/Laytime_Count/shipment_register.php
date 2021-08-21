@@ -46,19 +46,19 @@ include $path.'header.php';
             <table class="shipment_table03">
                 <tr>
                     <th>船名</th>
-                    <td><input type="text" id="vessel_name" name="vessel_name" placeholder="vessel_name"></td>
+                    <td><input type="text" id="vessel_name" name="vessel_name" placeholder="vessel_name" required></td>
                 </tr>
                 <tr>
                     <th>案件名</th>
-                    <td><input type="text" id="project_name" name="project_name" placeholder="project_name"></td>
+                    <td><input type="text" id="project_name" name="project_name" placeholder="project_name" required></td>
                 </tr>
                 <tr>
                     <th>契約年度</th>
-                    <td><input type="number" id="contract_year" name="contract_year" placeholder="contract_year、spotの場合は1"></td>
+                    <td><input type="number" id="contract_year" name="contract_year" min="1" placeholder="contract_year、spotの場合は1"></td>
                 </tr>
                 <tr>
                     <th>配船番号</th>
-                    <td><input type="number" id="shipment_number" name="shipment_number" placeholder="shipment_number、spotの場合は1"></td>
+                    <td><input type="number" id="shipment_number" name="shipment_number" min="1" placeholder="shipment_number、spotの場合は1"></td>
                 </tr>
                 <tr>
                     <th>積地/揚地</th>
@@ -66,15 +66,15 @@ include $path.'header.php';
                 </tr>
                 <tr>
                     <th>荷役率</th>
-                    <td><input type="number" id="operation_rate" name="operation_rate" placeholder="operation_rate(MT/day)"></td>
+                    <td><input type="number" id="operation_rate" name="operation_rate" min="1" placeholder="operation_rate(MT/day)"></td>
                 </tr>
                 <tr>
                     <th>滞船料率</th>
-                    <td><input type="number" id="dem_rate" name="dem_rate" placeholder="dem_rate(USD/day)"></td>
+                    <td><input type="number" id="dem_rate" name="dem_rate" min="1" placeholder="dem_rate(USD/day)"></td>
                 </tr>
                 <tr>
                     <th>早出料率</th>
-                    <td><input type="number" id="des_rate" name="des_rate" placeholder="des_rate(USD/day)"></td>
+                    <td><input type="number" id="des_rate" name="des_rate" min="1" placeholder="des_rate(USD/day)"></td>
             </tr>
             </table>
             <button type="submit" class="shipment_register_button" style="width:100%">新規配船登録</button>    
