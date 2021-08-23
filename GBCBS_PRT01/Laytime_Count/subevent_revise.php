@@ -117,7 +117,7 @@ include $path.'header.php';
                             </td>
                             <td>
                                 <span class="material-icons edit">update</span>
-                                <button type="submit" class="event_revise_button">
+                                <button type="submit" class="event_revise_button" name="event_revise_button" id="event_revise_button">
                                     登録内容修正
                                 </button>  
                             </td>
@@ -151,9 +151,6 @@ $('#subevent_count_flag').on('change', function(){
     };
 })
 
-
-
-
   function beforeSubmit() {
     if(window.confirm('この内容で修正しますがよろしいでしょうか?')) {
       return true;
@@ -164,12 +161,18 @@ $('#subevent_count_flag').on('change', function(){
 
   function beforeDelete() {
     if(window.confirm('この内容を削除しますがよろしいでしょうか?')) {
+
+        //更新時にKey Eventならinputを無効化
+        if($('#subevent_name').val() == 'arrival_time' || $('#subevent_name').val() == 'nor_tender' || $('#subevent_name').val() == 'berthed_time' ||$('#subevent_name').val() == '#commencement_of_operation' ||$('#subevent_name').val() == 'completion_of_operation' ||$('#subevent_name').val() == 'commencement_of_laytime' ||$('#subevent_name').val() == 'expiration_of_laytime'){
+            alert('Key Eventは削除できません');
+            return false;
+        }
+
       return true;
     } else {
       return false;
     }
   }
-
 
 </script>
 

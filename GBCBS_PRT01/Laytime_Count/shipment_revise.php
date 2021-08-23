@@ -138,7 +138,6 @@ include $path.'header.php';
     }
   }
 
-
 </script>
 
 </html>
