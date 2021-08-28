@@ -280,7 +280,7 @@ LOGINフォーム関連
 }
 
 .login_form_input th,td{
-    padding:30px 0 30px 0;
+    padding:20px 0 20px 0;
     width: 600px;
     border:solid 2px transparent;
     background:var(--sub--color03);
@@ -636,4 +636,25 @@ SHIPMENT_INPUT関連
     background:var(--sub--color04);
     border: 2px solid;
     border-color:transparent;
+}
+
+/*開発ログ関連*/
+
+.application_log{
+    margin: 30px auto 30px auto;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background:var(--sub--color03);
+    line-height: 20px;
+}
+
+.application_log_title{
+    margin:5px;
+    padding:5px;
+}
+
+.application_log_text{
+    width: 90%;
 }

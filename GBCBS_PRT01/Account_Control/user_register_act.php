@@ -1,7 +1,10 @@
 <?php
+
+session_start();
+
 // 1. POSTデータ取得
 $user_name = $_POST["user_name"];
-$user_email = $user_name;
+$user_email = $_POST["user_email"];
 $user_password = password_hash($_POST["user_password"],PASSWORD_DEFAULT);
 $user_group = "MC";
 $user_access = 1;
@@ -36,58 +39,12 @@ $status = $stmt->execute();
 
 
 // 6．データ登録処理後
-if ($status == false) {
+if($status == false){
     sql_error($stmt);
-    } else {
-      redirect('../index.php');
-}?>
+}else{
+    $_SESSION['temp_message'] = "user登録に成功しました。Loginしてください";
+    redirect('../index.php');
+}
 
+?>
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../reset.css">
-    <link rel="stylesheet" href="../general.css">
-    <script src="../jquery-2.1.3.min.js"></script>
-    <title>USER_REGISTER</title>
-</head>
-
-<!--
-以下、共通ヘッダー
--->
-
-<div class="site_header01">
-    <a href="../index.php">
-        <img class="site_logo" src="../logo.png">
-        </img>
-    </a>
-    <nav class="gnav">
-        <ul class="gnav_menu">
-            <li class="gnav_menu_item01"><a href="./login.php">LOG-IN</a></li>
-            <li class="gnav_menu_item01"><a href="./user_register.php">User登録</a></li>
-            <li class="gnav_menu_item01"><a href="">XXX</a></li>
-        </ul>
-    </nav>
-</div>
-
-<div class="site_header02">
-    <div></div>
-    <nav class="gnav">
-        <ul class="gnav_menu">
-            <li class="gnav_menu_item02"><a href="../Laytime_Count/LC_main.php">LAYTIME CALCULATION</a></li>
-            <li class="gnav_menu_item02"><a href="">SHIPMENT LOCATION</a></li>
-            <li class="gnav_menu_item02"><a href="">DELIVERY MANAGEMENT</a></li>
-            <li class="gnav_menu_item02"><a href="">VESSEL NOMINATION</a></li>
-        </ul>
-    </nav>
-</div>
-
-<!-- 
-以下、メイン部分
- -->
-
-
-</html>

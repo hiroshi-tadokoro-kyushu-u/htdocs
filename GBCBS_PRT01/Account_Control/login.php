@@ -1,7 +1,14 @@
 <?php
 
+session_start();
+$temp_message = $_SESSION['temp_message'];
+
 $path = '../'; 
 include $path.'header.php';
+
+if(isset($_SESSION['temp_message'])){echo "<script type='text/javascript'>alert('".$_SESSION['temp_message']."');</script>";}
+$_SESSION['temp_message'] = null;
+
 
 ?>
 
@@ -31,17 +38,15 @@ include $path.'header.php';
         LOGIN TO YOUR ACCOUNT
         <form method="POST" action="./login_act.php">
             <table class="login_form_input">
-                <!-- <tr>
-                    <td>USERNAME(mail-address)</td>
-                </tr> -->
                 <tr>
-                    <td><span class="material-icons">person</span><input type="text" name="user_name" placeholder="username"></td>
+                    <td><span class="material-icons">person</span><input type="text" required id="user_name" name="user_name" placeholder="user_name"></td>
                 </tr>
-                <!-- <tr>
-                    <td>PASSWORD</td>
-                </tr> -->
                 <tr>
-                    <td><span class="material-icons">vpn_key</span><input type="text" name="user_password" placeholder="password"></td>
+                    <td><span class="material-icons">email</span><input type="email" required id="user_email" name="user_email" placeholder="user_email"></td>
+                </tr>
+                <tr>
+                    <td><span class="material-icons">vpn_key</span><input type="text" required id="user_password" name="user_password" placeholder="user_password"></td>
+                </tr>
                 </tr>
             </table>
             <input class="login_form_button" type="submit" value="Log in">
@@ -53,7 +58,5 @@ include $path.'header.php';
 <?php
     include $path.'footer.php';
 ?>
-
-
 
 </html>

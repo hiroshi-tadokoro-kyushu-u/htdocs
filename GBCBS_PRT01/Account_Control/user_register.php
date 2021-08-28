@@ -35,13 +35,13 @@ include $path.'header.php';
                     <td>USERNAME(mail-address)</td>
                 </tr> -->
                 <tr>
-                    <td><span class="material-icons">person</span><input type="text" id="user_name" name="user_name" placeholder="user_name"></td>
+                    <td><span class="material-icons">person</span><input type="text" required id="user_name" name="user_name" placeholder="user_name"></td>
                 </tr>
-                <!-- <tr>
-                    <td>PASSWORD</td>
-                </tr> -->
                 <tr>
-                    <td><span class="material-icons">vpn_key</span><input type="text" id="user_password" name="user_password" placeholder="user_password"></td>
+                    <td><span class="material-icons">email</span><input type="email" required id="user_email" name="user_email" placeholder="user_email"></td>
+                </tr>
+                <tr>
+                    <td><span class="material-icons">vpn_key</span><input type="text" required id="user_password" name="user_password" placeholder="user_password"></td>
                 </tr>
             </table>
             <input class="login_form_button" type="submit" value="Register">
@@ -88,12 +88,40 @@ include $path.'header.php';
 
             }).done(function(flag){
                 if(flag == 1){
-                    alert('そのメールアドレスは既に登録されています');
+                    alert('そのメール名は既に登録されています');
                     $('#user_name').val('');
                 }
             })
         }
     });
+
+    $('#user_email').blur(function(){
+        var check_str = $(this).val();
+        //Ajax送信開始
+        if(check_str){
+            $.ajax({
+                url: 'user_email_check.php',
+                type:"POST",
+                data:{
+                    check: check_str,
+                },
+                // dataType: 'json',
+                success: function() {
+                    console.log("success");
+                },
+                error: function() {
+                    console.log("error"); //戻り値Allオブジェクト
+                },
+
+            }).done(function(flag){
+                if(flag == 1){
+                    alert('そのメールアドレスは既に登録されています');
+                    $('#user_email').val('');
+                }
+            })
+        }
+    });
+
 </script>
 
 </html>

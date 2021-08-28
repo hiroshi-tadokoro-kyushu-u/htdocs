@@ -3,16 +3,16 @@
 function db_connect(){
     try {
         // デプロイ用
-        $db_name = "mil16_gbcbs_prt01";    //データベース名
-        $db_id   = "mil16";      //アカウント名
-        $db_pw   = "GONgon6015";      //パスワード：XAMPPはパスワード無しに修正してください。
-        $db_host = "mysql1036.db.sakura.ne.jp"; //DBホスト
+        // $db_name = "mil16_gbcbs_prt01";    //データベース名
+        // $db_id   = "mil16";      //アカウント名
+        // $db_pw   = "GONgon6015";      //パスワード：XAMPPはパスワード無しに修正してください。
+        // $db_host = "mysql1036.db.sakura.ne.jp"; //DBホスト
 
       // //内部テスト用
-        // $db_name = "mil16_gbcbs_prt01";    //データベース名
-        // $db_id   = "root";      //アカウント名
-        // $db_pw   = "root";      //パスワード：XAMPPはパスワード無しに修正してください。
-        // $db_host = "localhost"; //DBホスト
+        $db_name = "mil16_gbcbs_prt01";    //データベース名
+        $db_id   = "root";      //アカウント名
+        $db_pw   = "root";      //パスワード：XAMPPはパスワード無しに修正してください。
+        $db_host = "localhost"; //DBホスト
 
       $pdo = new PDO('mysql:dbname=' . $db_name . ';charset=utf8;host=' . $db_host, $db_id, $db_pw);
         return $pdo;//ここを追加！！

@@ -1,5 +1,10 @@
 <?php
 
+session_start();
+$temp_message = $_SESSION['temp_message'];
+if(isset($_SESSION['temp_message'])){echo "<script type='text/javascript'>alert('".$_SESSION['temp_message']."');</script>";}
+$_SESSION['temp_message'] = null;
+
 $path = './'; 
 include $path.'header.php';
 
@@ -56,6 +61,19 @@ include $path.'header.php';
                 <div>(TBU)VESSEL NOMINATION</div>
                 <img src="<?php echo $path; ?>VESSEL NOMINATION.JPG" alt="">
             </a>
+        </div>
+    </div>
+
+
+    <!--開発ログ-->
+    <div class="application_log">
+        <div class="application_log_title">
+            開発ログ(ver.α.1.1.1)
+        </div>
+        <div class="application_log_text">
+            2021/08/28 <br>
+            ・User登録及びLogin周りの機能追加、登録情報を削除<br>
+            ・メールアドレス登録→User情報のアドレス送信を追加<br>
         </div>
     </div>
 
