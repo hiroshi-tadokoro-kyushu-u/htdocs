@@ -71,9 +71,13 @@ include $path.'header.php';
             開発ログ(ver.α.1.1.1)
         </div>
         <div class="application_log_text">
+            2021/08/30 <br>
+            ・LAYTIME登録→確認先へのメール送信を追加<br>
+            ・LAYTIME CALCULATIONから確認依頼配船の登録→修正を追加<br>
             2021/08/28 <br>
             ・User登録及びLogin周りの機能追加、登録情報を削除<br>
             ・メールアドレス登録→User情報のアドレス送信を追加<br>
+
         </div>
     </div>
 

@@ -1,70 +1,26 @@
 <?php
 
+// mb_language("Japanese");
+// mb_internal_encoding("UTF-8");
 
+// $to = "hiroshi.tadokoro.kyushu.u@gmail.com";
+// $subject = "ユーザー登録通知";
+// $message = "(このメールアドレスに返信しないでください)\r\nユーザー登録が完了しました。\r\nuser_name = ${_POST["user_name"]}\r\nuser_email = ${_POST["user_email"]}\r\nuser_password = ${_POST["user_password"]}\r\nLog-inして機能テストをお願いします";
+// $headers = "From:info@GBCBS_PRT.jp";
 
-
-$to = "hiroshi.tadokoro.kyushu.u@gmail.com";
-$subject = "TEST";
-$message = "This is TEST.\r\nHow are you?";
-$headers = "From:info@TES.jpT";
-mail($to, $subject, $message, $headers);
-
-
-
-
-
-
-
-
-
-
-// use PHPMailer\PHPMailer\PHPMailer;
-// use PHPMailer\PHPMailer\SMTP;
-// use PHPMailer\PHPMailer\Exception;
-
-
-// require '../../../vendor/autoload.php';
-
-// $mail = new PHPMailer(true);
-
-
-// try {
-//      //ホスト（さくらのレンタルサーバの初期ドメイン）
-//     $host = 'mil16.sakura.ne.jp';
-//     //メールアカウントの情報（さくらのレンタルサーバで作成したメールアカウント）
-//     $user = 'gbcbs_prt01@mil16.sakura.ne.jp';
-//     $password = 'GONgon6015';
-//     //差出人
-//     $from = 'gbcbs_prt01@mil16.sakura.ne.jp';
-//     $from_name = 'gbcbs_prt01';
-//     //宛先
-//     $to = 'hiroshi_tadokoro.kyushu.u@gmail.co.jp';
-//     $to_name = 'test_user';
-//     //件名
-//     $subject = 'test';
-//     //本文
-//     $body = 'test';
-//     //諸々設定
-//     $mail->SMTPDebug = SMTP::DEBUG_SERVER; //デバッグ用
-//     $mail->isSMTP();
-//     $mail->SMTPAuth = true;
-//     $mail->Host = $host;
-//     $mail->Username = $user;
-//     $mail->Password = $password;
-//     $mail->SMTPSecure = 'tls';
-//     $mail->Port = 587;
-//     $mail->CharSet = "utf-8";
-//     $mail->Encoding = "base64";
-//     $mail->setFrom($from, $from_name);
-//     $mail->addAddress($to, $to_name);
-//     $mail->Subject = $subject;
-//     $mail->Body = $body;
-//     //メール送信
-//     $mail->send();
-
-// } catch (Exception $e) {
-//   //エラー（例外：Exception）が発生した場合
-//   echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+// if(mb_send_mail($to, $subject, $message, $headers))
+// {
+//   echo "メール送信成功です";
 // }
+// else
+// {
+//   echo "メール送信失敗です";
+// }
+
+// session_start();
+// $_SESSION['temp_message'] = "user登録に成功しました。Loginしてください。nuser_name = ".$_POST["user_name"]."nuser_email =".$_POST["user_email"]."nuser_password =".$_POST["user_password"];
+// $temp_message = $_SESSION['temp_message'];
+// if(isset($_SESSION['temp_message'])){echo "<script type='text/javascript'>alert('".$_SESSION['temp_message']."');</script>";}
+// $_SESSION['temp_message'] = null;
 
 ?>

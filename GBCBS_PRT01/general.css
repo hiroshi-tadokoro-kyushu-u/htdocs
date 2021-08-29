@@ -24,6 +24,11 @@ body{
     --sub--color02:#9e9fac;
     --sub--color03:#f9f9fa;
     --sub--color04:#E9E9E9;
+    /* SECOND CALOR */
+    --second--color01:#4d7643;
+    --second--color02:#6EC388;
+    --second--color03:#9ed191;
+    
 }
 
 /* 共通ヘッダー */
@@ -638,6 +643,24 @@ SHIPMENT_INPUT関連
     border-color:transparent;
 }
 
+.laytime_register_button{
+    margin: 15px 0 15px 0;
+    padding: 10px;
+    border: 2px solid;
+    border-color: var(--sub--color03);
+    border-radius: 8px;
+    background:var(--second--color02);
+    color:var(--sub--color03);
+    text-align:center;
+}
+
+.laytime_register_button a{
+    color:var(--sub--color03);
+    font-size: 18px;
+    letter-spacing: 0.2em;
+}
+
+
 /*開発ログ関連*/
 
 .application_log{
@@ -657,4 +680,109 @@ SHIPMENT_INPUT関連
 
 .application_log_text{
     width: 90%;
+}
+
+/* SHIPMENT CONFIRMATION関連 */
+
+.shipment_confirmation{
+    margin:20px;
+    width: auto;
+    display: flex;
+    justify-content:center;
+}
+
+.shipment_confirmation_button{
+    padding: 20px;
+    width: auto;
+    border: 2px solid;
+    border-color: var(--sub--color03);
+    border-radius: 8px;
+    background:var(--second--color02);
+    color: var(--sub--color03);
+    font-size: 18px;
+    letter-spacing: 0.2em;
+}
+
+/*CONFIRMATION関連*/
+
+.confirmation_table02{
+    border: 2px solid;
+    border-color: var(--sub--color03);
+    /* border-radius: 8px; */
+    background:var(--sub--color03);
+    border-collapse: collapse;   
+    text-align: center;
+}
+
+.confirmation_table02 a{
+    color: var(--sub--color01);
+}
+
+
+.confirmation_table02 th{
+    width:250px;
+    height:30px;
+    padding:2px;
+    line-height: 30px;
+    border: 2px solid;
+    background-color: var(--second--color03);
+    border-color:var(--sub--color03);
+    border-radius: 8px;
+}
+
+.confirmation_table02 td{
+    width:250px;
+    height:30px;
+    padding:2px;
+    line-height: 30px;
+    background:var(--sub--color03);
+    /* border-bottom: solid 2px var(--sub--color02); */
+    /* border-radius: 8px; */
+}
+
+.confirmation_table02 tr:nth-child(odd) td{
+    width:250px;
+    height:30px;
+    padding:2px;
+    line-height: 30px;
+    background:var(--sub--color04);
+    /* border-bottom: solid 2px var(--sub--color02); */
+    /* border-radius: 8px; */
+}
+
+.confirmation_table03{
+    border: 2px solid;
+    border-color: var(--sub--color04);
+    border-radius: 8px;
+    background:var(--sub--color03);
+    border-collapse: collapse;   
+    text-align: center;
+}
+
+
+.confirmation_table03 th{
+    width:250px;
+    height:30px;
+    padding:2px;
+    line-height: 30px;
+    border: 2px solid;
+    background-color:var(--second--color03);
+    border-color: var(--sub--color03);
+    border-radius: 8px;
+}
+
+.confirmation_table03 td{
+    width:250px;
+    height:30px;
+    padding:2px;
+    line-height: 30px;
+    background:var(--sub--color03);
+    border: 2px solid;
+    border-color: var(--sub--color03);
+    border-radius: 8px;
+}
+
+.confirmation_table03 input{
+    margin:2px;
+    width:95%;
 }

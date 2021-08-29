@@ -36,7 +36,7 @@ include $path.'header.php';
     <link rel="stylesheet" href="<?php echo $path; ?>general.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="<?php echo $path; ?>jquery-2.1.3.min.js"></script>
-    <title>SHIPMENT INPUT</title>
+    <title>SHIPMENT CONFIRMATION</title>
 </head>
 
 <!--
@@ -47,6 +47,8 @@ include $path.'header.php';
 以下、メイン部分
  -->
 <body class="index_background"> 
+
+    
 
     <div class="shipment_table01">
         <div class="shipment_table04_outline">
@@ -115,10 +117,37 @@ include $path.'header.php';
             ?>
             </table>
         </div>
+        
+<!-- 確認先入力 -->
+        <div class="shipment_table04_outline">
+            <form method="post" action="./shipment_confirmation_act.php" onsubmit="return beforeSubmit()">
+                <table class="shipment_table04">
+                    <tr>
+                        <th colspan="2" style="width:700px; line-height:50px;">「確認先登録」</th>
+                    </tr>
+                    <tr>
+                        <th>確認先:email address</th>
+                        <td>
+                            <input style="line-height:30px;" type="email" required id="confirmer_email" name="confirmer_email" placeholder="user_email">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="2" style="width: 700px;">
+                            <button type="button" class="laytime_register_button" style="width:40%; background:var(--main--color02);" onclick="history.back()">
+                                戻る / 修正
+                            </button>
+                            <button type="submit" class="laytime_register_button" style="width:40%">
+                                確認依頼送信
+                            </button>
+                        </th>
+                    </tr>
+                </form>
+            </table>
+        </div>
 
 
 <!-- MAIN EVENT入力部分 -->
-        <div class="shipment_table04_outline">
+        <div class="shipment_table04_outline"  style="display:none">
             <form method="post" action="./event_input_act.php" onsubmit="return beforeSubmit()">
                 <table class="shipment_table05">
 
@@ -296,7 +325,7 @@ include $path.'header.php';
     
 <!--TIME SHEET部分-->
 
-    <div class="event_table01">
+    <div class="event_table01" style="display:none">
         <div class="event_table02">
             <table class="event_table03">
                 <tbody id="calculation_sheet">
@@ -470,13 +499,6 @@ include $path.'header.php';
                     </td>
                 </tr>
             </table>
-            
-            <!--SHIPMENT CONFIRMATION-->
-            <div class="laytime_register_button" id="laytime_register_button" style="width:auto">
-                <a href="<?php echo 'shipment_confirmation.php?shipment_id='.$shipment_id;?>">
-                    Lay Time登録 / 確認依頼
-                </a>
-            </div>
         </div>
     </div>
 

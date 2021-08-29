@@ -42,7 +42,25 @@ $status = $stmt->execute();
 if($status == false){
     sql_error($stmt);
 }else{
-    $_SESSION['temp_message'] = "user登録に成功しました。Loginしてください";
+    // 登録情報のメール送信 
+    mb_language("Japanese");
+    mb_internal_encoding("UTF-8");
+    $to = $_POST["user_email"];
+    $subject = "ユーザー登録通知";
+    $message = "(このメールアドレスに返信しないでください)\r\nユーザー登録が完了しました。\r\nuser_name = ${_POST["user_name"]}\r\nuser_email = ${_POST["user_email"]}\r\nuser_password = ${_POST["user_password"]}\r\nLog-inして機能テストをお願いします";
+    $headers = "From:info@GBCBS_PRT.jp";
+    if(mb_send_mail($to, $subject, $message, $headers))
+    {
+      // echo "メール送信成功です";
+    }
+    else
+    {
+      $_SESSION['temp_message'] = "user登録が成功しましたがメール送信に失敗しました。こちらの登録情報からLoginしてください。user_name = ".$_POST["user_name"]." // user_email =".$_POST["user_email"]." // user_password =".$_POST["user_password"];
+    }
+  
+    // アラートメッセージ
+    $_SESSION['temp_message'] = "user登録に成功しました。Loginしてください。user_name = ".$_POST["user_name"]." // user_email =".$_POST["user_email"]." // user_password =".$_POST["user_password"];
+    
     redirect('../index.php');
 }
 
